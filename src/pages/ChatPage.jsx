@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import "./ChatPage.css";
 
-const WS_URL = "http://localhost:8081/ws-chat";
+const WS_URL = "https://resqnet-backend-1.onrender.com/api";
 
 function ChatPage() {
   const navigate = useNavigate();
