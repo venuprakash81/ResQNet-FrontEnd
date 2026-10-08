@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./DoctorBooking.css";
 
-const API_BASE = "http://localhost:8081/api/doctor-bookings";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api/doctor-bookings";
 
 const DoctorBooking = () => {
     const [doctors, setDoctors] = useState([]);
