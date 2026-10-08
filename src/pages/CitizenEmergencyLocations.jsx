@@ -19,7 +19,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import "./CitizenEmergencyLocations.css";
 
-const API = "http://localhost:8081/api/emergency-locations";
+const API = "https://resqnet-backend-1.onrender.com/api/emergency-locations";
 
 const emergencyIcon = new L.Icon({
   iconUrl:
