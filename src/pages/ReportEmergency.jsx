@@ -1137,7 +1137,34 @@ const ReportEmergency = () => {
           =========================================== */}
 
    
+ <div className="form-actions">
 
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={() =>
+                navigate(
+                  "/citizen/dashboard"
+                )
+              }
+            >
+              Cancel
+            </button>
+
+
+            <button
+              type="submit"
+              className="submit-emergency-btn"
+              disabled={loading}
+            >
+
+              {loading
+                ? "Submitting..."
+                : "🚨 Report Emergency"}
+
+            </button>
+
+          </div>
        
 
         </form>
