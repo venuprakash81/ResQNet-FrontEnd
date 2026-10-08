@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import "./NearbyVolunteers.css";
 
-const API_URL = "http://localhost:8081/api/volunteers";
+const API_URL = "https://resqnet-backend-1.onrender.com/api/volunteers";
 
 function NearbyVolunteers() {
   const [volunteers, setVolunteers] = useState([]);
