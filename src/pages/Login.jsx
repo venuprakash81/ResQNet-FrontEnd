@@ -38,14 +38,14 @@ const Login = () => {
       title: "Authority / Admin",
       description:
         "Login to monitor disasters and coordinate emergency response.",
-      path: "/login/authority",
+      path: "/login/admin",
     },
     {
       icon: "🏢",
       title: "NGO",
       description:
         "Login to coordinate humanitarian services and relief operations.",
-      path: "/login/ngo",
+      path: "/login",
     },
   ];
 
