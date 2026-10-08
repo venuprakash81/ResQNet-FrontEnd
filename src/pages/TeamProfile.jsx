@@ -34,7 +34,7 @@ const TeamProfile = () => {
       if (teamId) {
         try {
           const response = await fetch(
-            `http://localhost:8081/api/teams/${teamId}`
+            `https://resqnet-backend-1.onrender.com/api/teams/${teamId}`
           );
 
           if (response.ok) {
@@ -105,7 +105,7 @@ const TeamProfile = () => {
       if (team.id) {
         try {
           const response = await fetch(
-            `http://localhost:8081/api/teams/${team.id}`,
+            `https://resqnet-backend-1.onrender.com/api/teams/${team.id}`,
             {
               method: "PUT",
               headers: {
