@@ -171,7 +171,7 @@ function EmergencyMap() {
 
 
       const response = await fetch(
-        "http://localhost:8081/api/emergencies"
+        "https://resqnet-backend-1.onrender.com/api/emergencies"
       );
 
 
