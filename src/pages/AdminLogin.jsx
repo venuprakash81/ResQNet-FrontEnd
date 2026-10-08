@@ -23,7 +23,7 @@ function AdminLogin() {
 
         try {
             const response = await fetch(
-                "http://localhost:8081/api/admin/login",
+                "https://resqnet-backend-1.onrender.com/api/admin/login",
                 {
                     method: "POST",
                     headers: {
