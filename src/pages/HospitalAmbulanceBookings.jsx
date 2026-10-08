@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./HospitalAmbulanceBookings.css";
 
-const API = "http://localhost:8081/api";
+const API = "https://resqnet-backend-1.onrender.com/api";
 
 function HospitalAmbulanceBookings() {
   const hospital = JSON.parse(localStorage.getItem("hospital") || "{}");
