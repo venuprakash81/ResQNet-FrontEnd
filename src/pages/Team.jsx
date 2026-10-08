@@ -51,7 +51,7 @@ function Team() {
     try {
 
       const response = await fetch(
-        "http://localhost:8081/api/teams/register",
+        "https://resqnet-backend-1.onrender.com/api/teams/register",
         {
           method: "POST",
 
