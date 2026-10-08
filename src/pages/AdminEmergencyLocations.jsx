@@ -19,7 +19,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import "./AdminEmergencyLocations.css";
 
-const API = "http://localhost:8081/api/emergency-locations";
+const API = "https://resqnet-backend-1.onrender.com/api/emergency-locations";
 
 // Saved safe location marker
 const safeIcon = new L.DivIcon({
