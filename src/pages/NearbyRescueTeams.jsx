@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import "./NearbyRescueTeams.css";
 
-const API = "http://localhost:8081/api/teams";
+const API = "https://resqnet-backend-1.onrender.com/api/teams";
 
 // Calculate distance between two GPS coordinates in kilometers
 function calculateDistance(lat1, lon1, lat2, lon2) {
