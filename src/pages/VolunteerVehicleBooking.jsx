@@ -29,7 +29,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import "./VolunteerVehicleBooking.css";
 
-const API_BASE = "http://localhost:8081/api";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api";
 
 const defaultCenter = [17.385, 78.4867];
 
