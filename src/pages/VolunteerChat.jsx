@@ -16,7 +16,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import "./HospitalChat.css";
 
-const WS_URL = "http://localhost:8081/ws-chat";
+const WS_URL = "https://resqnet-backend-1.onrender.com/api";
 
 const chatCategories = [
   { id: "CITIZEN", label: "Citizen Chats", icon: Users },
