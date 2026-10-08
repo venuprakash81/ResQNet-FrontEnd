@@ -19,7 +19,7 @@ import "./RescueDashboard.css";
    API
 ========================================================= */
 
-const API_BASE = "http://localhost:8081/api";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api";
 
 const EMERGENCIES_API = `${API_BASE}/emergencies`;
 const TEAM_MEMBERS_API = `${API_BASE}/team-members`;
