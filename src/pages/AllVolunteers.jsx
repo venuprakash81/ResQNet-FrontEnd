@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import "./AllVolunteers.css";
 
-const API_BASE = "http://localhost:8081/api";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api";
 
 function AllVolunteers() {
   const [volunteers, setVolunteers] = useState([]);
