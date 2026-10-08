@@ -151,7 +151,7 @@ function CitizenEmergencies() {
       setLoading(true);
 
       const response = await fetch(
-        `http://localhost:8081/api/emergencies/citizen/${encodeURIComponent(
+        `https://resqnet-backend-1.onrender.com/api/emergencies/citizen/${encodeURIComponent(
           email
         )}`
       );
@@ -472,7 +472,7 @@ function CitizenEmergencies() {
 
       const response =
         await fetch(
-          `http://localhost:8081/api/emergencies/${editingEmergency.id}`,
+          `https://resqnet-backend-1.onrender.com/api/emergencies/${editingEmergency.id}`,
           {
             method: "PUT",
 
@@ -581,7 +581,7 @@ function CitizenEmergencies() {
 
       const response =
         await fetch(
-          `http://localhost:8081/api/emergencies/${id}?citizenEmail=${encodeURIComponent(
+          `https://resqnet-backend-1.onrender.com/api/emergencies/${id}?citizenEmail=${encodeURIComponent(
             email
           )}`,
           {
