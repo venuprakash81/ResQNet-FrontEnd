@@ -1135,6 +1135,68 @@ const ReportEmergency = () => {
           {/* ==========================================
               IMAGE
           =========================================== */}
+<div className="form-section">
+
+            <div className="section-heading">
+
+             
+
+
+              <input
+                id="emergencyImage"
+                type="file"
+                accept="image/*"
+                onChange={
+                  handleImageChange
+                }
+              />
+
+
+              {image && (
+
+                <p className="selected-file">
+
+                  Selected:
+                  {" "}
+                  {image.name}
+
+                </p>
+
+              )}
+
+
+              {!image && (
+
+                <p className="default-image-text">
+
+                 
+                </p>
+
+              )}
+
+            </div>
+
+          </div>
+
+
+          {/* MESSAGE */}
+
+          {message && (
+
+            <div
+              className={
+                messageType === "success"
+                  ? "success-message"
+                  : messageType === "info"
+                  ? "info-message"
+                  : "error-message"
+              }
+            >
+              {message}
+            </div>
+
+          )}
+
 
    
  <div className="form-actions">
