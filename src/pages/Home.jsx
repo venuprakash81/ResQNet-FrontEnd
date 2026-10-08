@@ -142,7 +142,7 @@ const Home = () => {
 
             </div>
 
-            <Link to="/emergency" className="dispatch">
+            <Link to="/" className="dispatch">
               🚑 Dispatch Rescue Team
             </Link>
 
