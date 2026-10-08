@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import "./NearbyHospitals.css";
 
-const API_URL = "http://localhost:8081/api/hospitals";
+const API_URL = "https://resqnet-backend-1.onrender.com/api/hospitals";
 
 function NearbyHospitals() {
   const [hospitals, setHospitals] = useState([]);
