@@ -12,7 +12,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./VolunteerDashboard.css";
 
-const API_BASE = "http://localhost:8081/api";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api";
 const EMERGENCIES_API = `${API_BASE}/emergencies`;
 const TEAMS_API = `${API_BASE}/teams`;
 const VOLUNTEERS_API = `${API_BASE}/volunteers`;
