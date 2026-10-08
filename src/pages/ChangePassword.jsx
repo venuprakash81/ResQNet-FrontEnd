@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ChangePassword.css";
 
-const API_BASE = "http://localhost:8081/api/citizens";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api/citizens";
 
 export default function ChangePassword() {
   const navigate = useNavigate();
