@@ -60,7 +60,7 @@ function HospitalRegister() {
 
     try {
       const response = await fetch(
-        "http://localhost:8081/api/hospitals/register",
+                "https://resqnet-backend-1.onrender.com/api/hospitals/register",
         {
           method: "POST",
           headers: {
