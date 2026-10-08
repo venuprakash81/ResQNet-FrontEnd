@@ -111,7 +111,7 @@ const VolunteerSettings = () => {
         localStorage.getItem("email");
 
       const response = await fetch(
-        "http://localhost:8081/api/volunteers/change-password",
+        "https://resqnet-backend-1.onrender.com/api/volunteers/change-password",
         {
           method: "PUT",
           headers: {
