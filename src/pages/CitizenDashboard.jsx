@@ -33,9 +33,9 @@ const PAGE_ROUTES = {
   privacy: "/citizen/privacy",
   notifications: "/citizen/notifications",
   locationSettings: "/citizen/location-settings",
-  language: "/citizen/language",
+  language: "/citizen/dashbaord",
   appearance: "/citizen/appearance",
-  emergencyPreferences: "/citizen/emergency-preferences",
+  emergencyPreferences: "/citizen/dashboard",
   about: "/about",
 };
 
