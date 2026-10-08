@@ -3,7 +3,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HospitalBeds.css";
 
-const API = "http://localhost:8081/api";
+const API = "https://resqnet-backend-1.onrender.com/api";
 
 const initialForm = {
   bedType: "General",
