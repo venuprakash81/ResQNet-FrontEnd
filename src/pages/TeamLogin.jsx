@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TeamLogin.css";
 
-const API_BASE = "http://localhost:8081/api/teams";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api/teams";
 
 function TeamLogin() {
   const navigate = useNavigate();
