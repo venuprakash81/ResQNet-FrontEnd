@@ -466,7 +466,7 @@ const ReportEmergency = () => {
 
       const response =
         await fetch(
-          "http://localhost:8081/api/emergencies/report",
+          "https://resqnet-backend-1.onrender.com/api/emergencies/report",
           {
             method: "POST",
             body: data,
