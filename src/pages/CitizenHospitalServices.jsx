@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import "./CitizenHospitalServices.css";
 
-const API_BASE = "http://localhost:8081/api/hospitals";
+const API_BASE = "https://resqnet-backend-1.onrender.com/api/hospitals";
 
 const FILTERS = [
   "All Services",
