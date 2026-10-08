@@ -35,17 +35,17 @@ const Register = () => {
     },
     {
       icon: "🏛️",
-      title: "Authority / Admin",
+      title: "Ahority / Admin",
       description:
         "Monitor disasters, coordinate resources and manage response.",
-      path: "/register/authority",
+      path: "/register",
     },
     {
       icon: "🏢",
       title: "NGO",
       description:
         "Coordinate humanitarian services, relief activities and resources.",
-      path: "/register/ngo",
+      path: "/register",
     },
   ];
 
