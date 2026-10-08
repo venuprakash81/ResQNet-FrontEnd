@@ -15,14 +15,14 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
-.login-btn {
+.login-btn,.register-btn {
   display: flex;
   justify-content: center;
   gap: 10px;
   width: 100%;
 }
 
-.register-btn {
+.register-btn ,.login-btn{
   flex: 1;
   max-width: 140px;
   padding: 12px 20px;
