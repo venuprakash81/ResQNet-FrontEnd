@@ -52,7 +52,7 @@ const CitizenRegister = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8081/api/citizens/register",
+        "https://resqnet-backend-1.onrender.com/api/citizens/register",
         {
           method: "POST",
           headers: {
