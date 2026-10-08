@@ -24,7 +24,7 @@ import {
 
 import "./AdminDashboard.css";
 
-const API = "http://localhost:8081/api";
+const API = "https://resqnet-backend-1.onrender.com/api";
 
 const sections = [
   { name: "All Citizens", key: "citizens", icon: <Users />, color: "blue" },
