@@ -37,7 +37,7 @@ const Volunteer = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8081/api/volunteers/register",
+        "https://resqnet-backend-1.onrender.com/api/volunteers/register",
         {
           method: "POST",
           headers: {
