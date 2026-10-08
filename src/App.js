@@ -230,7 +230,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* ADMIN */}
-        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/login/admin" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route
           path="/admin/chats"
