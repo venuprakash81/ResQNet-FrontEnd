@@ -1,0 +1,1535 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.vvb-page {
+  min-height: 100vh;
+  background: #f4f7fb;
+  padding: 28px 20px 50px;
+  color: #182230;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.vvb-container {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.vvb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.vvb-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.vvb-heading-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  color: #fff;
+  background: #1769d2;
+  box-shadow: 0 7px 18px rgba(23, 105, 210, 0.2);
+}
+
+.vvb-heading h1 {
+  margin: 0 0 5px;
+  font-size: 25px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.vvb-heading p,
+.vvb-section-title p {
+  margin: 0;
+  color: #687789;
+  font-size: 14px;
+}
+
+.vvb-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 10px 17px;
+  border: 0;
+  border-radius: 9px;
+  background: #1769d2;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.vvb-primary-button:hover {
+  background: #1056b1;
+  transform: translateY(-1px);
+}
+
+.vvb-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.vvb-notice.success {
+  color: #17643a;
+  background: #eaf8ef;
+  border-color: #bce8cb;
+}
+
+.vvb-notice.error {
+  color: #a32929;
+  background: #fff0f0;
+  border-color: #f2c4c4;
+}
+
+.vvb-notice span {
+  flex: 1;
+}
+
+.vvb-notice-close {
+  display: grid;
+  place-items: center;
+  padding: 3px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.vvb-bookings-section {
+  padding: 22px;
+  border: 1px solid #e6ebf2;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 5px 22px rgba(28, 48, 74, 0.04);
+}
+
+.vvb-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.vvb-section-title h2 {
+  margin: 0 0 5px;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.vvb-count {
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #edf4ff;
+  color: #1769d2;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Compact vertically stacked booking cards */
+.vvb-booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vvb-booking-card {
+  padding: 15px 16px;
+  border: 1px solid #e7ecf3;
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.vvb-booking-card:hover {
+  border-color: #c9dcf8;
+  box-shadow: 0 4px 14px rgba(30, 69, 120, 0.06);
+}
+
+.vvb-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.vvb-vehicle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vvb-vehicle-icon {
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: #1769d2;
+  background: #edf4ff;
+}
+
+.vvb-vehicle h3 {
+  margin: 0 0 3px;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.vvb-vehicle span {
+  color: #7a8796;
+  font-size: 11px;
+}
+
+.vvb-status {
+  padding: 5px 9px;
+  border-radius: 20px;
+  color: #93600a;
+  background: #fff4d9;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.vvb-route {
+  display: grid;
+  gap: 9px;
+  margin: 0 0 12px 4px;
+  padding-left: 0;
+}
+
+.vvb-route-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.vvb-route-dot,
+.vvb-choice-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  border-radius: 50%;
+}
+
+.pickup-dot {
+  background: #1c9b65;
+}
+
+.destination-dot {
+  background: #e34e55;
+}
+
+.vvb-route-text {
+  min-width: 0;
+}
+
+.vvb-route-text small,
+.vvb-location-item small {
+  display: block;
+  margin-bottom: 3px;
+  color: #8793a2;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.vvb-route-text p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #293747;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.vvb-card-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 17px;
+  padding: 10px 0;
+  border-top: 1px solid #edf0f4;
+  color: #687789;
+  font-size: 11px;
+}
+
+.vvb-card-details span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.vvb-card-details svg {
+  color: #8291a3;
+}
+
+.vvb-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #edf0f4;
+}
+
+.vvb-card-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 31px;
+  padding: 6px 11px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.vvb-edit-button {
+  color: #1769d2;
+  background: #edf4ff;
+}
+
+.vvb-edit-button:hover {
+  background: #dceaff;
+}
+
+.vvb-delete-button {
+  color: #c43b3b;
+  background: #fff0f0;
+}
+
+.vvb-delete-button:hover {
+  background: #ffe1e1;
+}
+
+.vvb-delete-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.vvb-map-button {
+  color: #4c5969;
+  background: #f1f3f6;
+}
+
+.vvb-map-button:hover {
+  background: #e5e9ef;
+}
+
+.vvb-state,
+.vvb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 25px;
+  text-align: center;
+}
+
+.vvb-state p,
+.vvb-empty p {
+  margin: 10px 0 0;
+  color: #758295;
+  font-size: 13px;
+}
+
+.vvb-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #dce7f5;
+  border-top-color: #1769d2;
+  border-radius: 50%;
+  animation: vvb-spin 0.8s linear infinite;
+}
+
+@keyframes vvb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vvb-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+  color: #1769d2;
+  background: #edf4ff;
+}
+
+.vvb-empty h3 {
+  margin: 13px 0 0;
+  font-size: 16px;
+}
+
+.vvb-empty .vvb-primary-button {
+  margin-top: 17px;
+}
+
+/* Modal */
+.vvb-modal-overlay {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(14, 27, 44, 0.62);
+}
+
+.vvb-modal {
+  width: min(100%, 720px);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+}
+
+.vvb-modal-header {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px 22px;
+  border-bottom: 1px solid #e9edf2;
+  background: #fff;
+}
+
+.vvb-modal-header h2 {
+  margin: 0 0 5px;
+  font-size: 19px;
+}
+
+.vvb-modal-header p {
+  margin: 0;
+  color: #778496;
+  font-size: 12px;
+}
+
+.vvb-modal-close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  background: #f2f4f7;
+  color: #566476;
+  cursor: pointer;
+}
+
+.vvb-modal-close:hover {
+  background: #e6eaf0;
+}
+
+.vvb-form {
+  padding: 20px 22px 22px;
+}
+
+.vvb-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.vvb-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.vvb-field > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #344256;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.vvb-field > span svg {
+  color: #6e8299;
+}
+
+.vvb-field input {
+  width: 100%;
+  min-height: 39px;
+  padding: 9px 11px;
+  border: 1px solid #dce3ec;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: #243244;
+  font: inherit;
+  font-size: 13px;
+}
+
+.vvb-field input:focus {
+  border-color: #1769d2;
+  box-shadow: 0 0 0 3px rgba(23, 105, 210, 0.1);
+}
+
+.vvb-field input[readonly] {
+  background: #f5f7fa;
+  color: #738094;
+}
+
+.vvb-full {
+  grid-column: 1 / -1;
+}
+
+.vvb-map-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 22px 0 12px;
+}
+
+.vvb-map-heading h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+.vvb-map-heading p {
+  margin: 0;
+  color: #7b8796;
+  font-size: 11px;
+}
+
+.vvb-map-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #687789;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.vvb-map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.vvb-location-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid #dce3ec;
+  border-radius: 8px;
+  background: #fff;
+  color: #526174;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.vvb-location-choice.active {
+  border-color: #1769d2;
+  background: #edf4ff;
+  color: #1769d2;
+}
+
+.vvb-choice-dot {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+}
+
+.vvb-map-wrapper {
+  overflow: hidden;
+  height: 270px;
+  border: 1px solid #dce3ec;
+  border-radius: 10px;
+}
+
+.vvb-map {
+  width: 100%;
+  height: 100%;
+}
+
+.vvb-location-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.vvb-location-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #e8edf3;
+  border-radius: 8px;
+  background: #fafbfd;
+}
+
+.vvb-location-item .vvb-route-dot {
+  margin-top: 3px;
+}
+
+.vvb-location-item p {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #344256;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.vvb-distance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 11px 12px;
+  border-radius: 8px;
+  background: #f0f6ff;
+  color: #41658e;
+  font-size: 12px;
+}
+
+.vvb-distance strong {
+  margin-left: auto;
+  color: #1769d2;
+  font-size: 14px;
+}
+
+.vvb-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #edf0f4;
+}
+
+.vvb-cancel-button {
+  min-height: 40px;
+  padding: 9px 16px;
+  border: 1px solid #dce3ec;
+  border-radius: 8px;
+  background: #fff;
+  color: #536174;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.vvb-cancel-button:hover {
+  background: #f4f6f8;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .vvb-page {
+    padding: 18px 12px 35px;
+  }
+
+  .vvb-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vvb-header > .vvb-primary-button {
+    width: 100%;
+  }
+
+  .vvb-heading h1 {
+    font-size: 21px;
+  }
+
+  .vvb-bookings-section {
+    padding: 15px;
+  }
+
+  .vvb-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vvb-full {
+    grid-column: auto;
+  }
+
+  .vvb-location-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .vvb-modal-overlay {
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .vvb-modal {
+    max-height: calc(100vh - 20px);
+  }
+
+  .vvb-modal-header,
+  .vvb-form {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  .vvb-section-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vvb-card-top {
+    align-items: flex-start;
+  }
+
+  .vvb-card-details {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .vvb-map-wrapper {
+    height: 230px;
+  }
+
+  .vvb-map-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vvb-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .vvb-modal-actions button {
+    width: 100%;
+  }
+}
+
+
+/* ================= RESQNET UI UPDATE ================= */
+
+/* =========================================================
+   ResQNet Unified UI Theme
+   Responsive laptop + mobile visual system
+   ========================================================= */
+
+:root {
+  --rq-blue: #1769e0;
+  --rq-blue-dark: #0f56bd;
+  --rq-blue-soft: #eaf2ff;
+  --rq-red: #ef3d45;
+  --rq-red-dark: #d92832;
+  --rq-green: #1f9d61;
+  --rq-orange: #f59e0b;
+  --rq-purple: #7c4dff;
+  --rq-bg: #f5f8fc;
+  --rq-surface: #ffffff;
+  --rq-text: #14213d;
+  --rq-muted: #718096;
+  --rq-border: #e5ebf3;
+  --rq-radius: 18px;
+  --rq-shadow: 0 8px 28px rgba(20, 55, 100, 0.07);
+  --rq-shadow-hover: 0 14px 34px rgba(20, 55, 100, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--rq-bg) !important;
+  color: var(--rq-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Arial, sans-serif !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Public/Home navigation ---------- */
+
+.navbar,
+.login-navbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, 0.18) !important;
+}
+
+.navbar .logo,
+.navbar .nav-links a,
+.login-navbar .login-logo,
+.login-navbar .login-back {
+  color: #fff !important;
+}
+
+.navbar .logo-icon,
+.login-logo-icon {
+  background: rgba(255,255,255,.16) !important;
+  border-radius: 12px !important;
+}
+
+.navbar .nav-links a:hover {
+  color: #fff !important;
+  opacity: .82;
+}
+
+.login-navbar .login-back {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+
+/* ---------- Dashboard top bars ---------- */
+
+.top-header,
+.hospital-header,
+.admin-mobile-header,
+.vol-topbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, .18) !important;
+}
+
+.top-header .brand,
+.top-header .brand h2,
+.top-header .brand span,
+.top-header .header-right,
+.top-header button,
+.hospital-header .hospital-brand h1,
+.hospital-header .hospital-brand p,
+.hospital-header .hospital-profile-text strong,
+.hospital-header .hospital-profile-text span,
+.admin-mobile-header .mobile-logo,
+.admin-mobile-header .back-button,
+.admin-mobile-header .header-actions button,
+.vol-topbar .vol-brand,
+.vol-topbar .vol-topbar-role {
+  color: #fff !important;
+}
+
+.brand-logo,
+.hospital-logo,
+.mobile-logo-icon,
+.vol-brand-mark {
+  background: rgba(255,255,255,.16) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+}
+
+.hospital-profile-icon,
+.header-profile,
+.vol-top-avatar {
+  background: rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+
+/* ---------- Main surfaces ---------- */
+
+.citizen-app,
+.hospital-dashboard,
+.rescue-dashboard,
+.vol-dashboard,
+.admin-mobile-app {
+  background: var(--rq-bg) !important;
+}
+
+.main-content,
+.hospital-main,
+.dashboard-content,
+.vol-main,
+.admin-mobile-main {
+  color: var(--rq-text);
+}
+
+.welcome-section,
+.hospital-welcome,
+.welcome-card,
+.citizen-welcome-card,
+.page-header-card,
+.page-title,
+.page-header {
+  border-radius: var(--rq-radius);
+}
+
+.feature-card,
+.info-card,
+.about-card,
+.tech-card,
+.process-card,
+.user-card,
+.summary-card,
+.service-card,
+.setting-card,
+.option-card,
+.quick-info-card,
+.record-card,
+.vol-home-card,
+.vol-panel,
+.vol-person-card,
+.doctor-card,
+.hospital-card,
+.team-card,
+.recent-emergency,
+.empty-card,
+.medical-card,
+.booking-card,
+.notification-card,
+.profile-card,
+.emergency-item {
+  background: var(--rq-surface) !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: var(--rq-radius) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.feature-card:hover,
+.info-card:hover,
+.about-card:hover,
+.tech-card:hover,
+.process-card:hover,
+.user-card:hover,
+.summary-card:hover,
+.service-card:hover,
+.setting-card:hover,
+.option-card:hover,
+.quick-info-card:hover,
+.record-card:hover,
+.vol-home-card:hover,
+.vol-person-card:hover,
+.doctor-card:hover,
+.hospital-card:hover,
+.team-card:hover {
+  box-shadow: var(--rq-shadow-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Section headings ---------- */
+
+.section-title,
+.section-heading,
+.quick-info-title,
+.summary-heading,
+.vol-section-heading,
+.vol-panel-heading,
+.home-section-header {
+  color: var(--rq-text);
+}
+
+.section-title h1,
+.section-title h2,
+.section-heading h1,
+.section-heading h2,
+.quick-info-title h2,
+.summary-heading h2,
+.vol-section-heading h2,
+.vol-panel-heading h2,
+.home-section-header h2 {
+  color: var(--rq-text) !important;
+  font-weight: 800 !important;
+}
+
+.section-title p,
+.section-heading p,
+.quick-info-title p,
+.vol-section-heading p,
+.vol-panel-heading p {
+  color: var(--rq-muted) !important;
+}
+
+/* ---------- Home hero ---------- */
+
+.hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(35,133,238,.18), transparent 34%),
+    linear-gradient(180deg, #eef6ff 0%, #f8fbff 100%) !important;
+}
+
+.hero h1 {
+  color: var(--rq-text) !important;
+}
+
+.hero h1 span {
+  color: var(--rq-blue) !important;
+}
+
+.hero-badge {
+  background: var(--rq-blue-soft) !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d7e6ff !important;
+}
+
+.primary-btn,
+.register-btn,
+.citizen-login-button,
+.login-btn,
+.dispatch,
+.emergency-button,
+.complete-emergency-button,
+.report-emergency-btn,
+.save-btn,
+.profile-save-button {
+  background: linear-gradient(135deg, var(--rq-blue), #2385ee) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 7px 18px rgba(23,105,224,.18) !important;
+}
+
+.primary-btn:hover,
+.register-btn:hover,
+.citizen-login-button:hover,
+.login-btn:hover,
+.dispatch:hover,
+.save-btn:hover,
+.profile-save-button:hover {
+  background: linear-gradient(135deg, var(--rq-blue-dark), var(--rq-blue)) !important;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: #fff !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d6e4f8 !important;
+  border-radius: 12px !important;
+}
+
+/* Emergency actions stay clearly red */
+
+.emergency-button,
+.report-emergency-btn,
+.emergency-cta,
+.sos-button {
+  background: linear-gradient(135deg, #ef3d45, #d92832) !important;
+  color: #fff !important;
+}
+
+/* ---------- Dashboard emergency banner ---------- */
+
+.emergency-card {
+  border: 0 !important;
+  box-shadow: 0 12px 32px rgba(239,61,69,.18) !important;
+  border-radius: 20px !important;
+}
+
+/* ---------- Icons ---------- */
+
+.card-icon,
+.section-icon,
+.page-title-icon,
+.page-header-icon,
+.setting-icon,
+.quick-info-icon,
+.detail-icon,
+.summary-icon,
+.form-title-icon,
+.step-icon,
+.vol-card-icon,
+.service-icon,
+.hospital-logo {
+  border-radius: 14px !important;
+}
+
+/* ---------- Search / forms ---------- */
+
+.search-box,
+.nearby-search-box,
+.login-input-wrapper,
+.input-group,
+.password-input-wrapper,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.login-form-group input,
+.login-form-group select,
+.login-form-group textarea,
+.form-control,
+.ai-input,
+.ai-chat-form textarea {
+  border-color: #dfe7f1 !important;
+}
+
+.search-box:focus-within,
+.nearby-search-box:focus-within,
+.login-input-wrapper:focus-within,
+.input-group:focus-within,
+.password-input-wrapper:focus-within {
+  border-color: #8ab7f5 !important;
+  box-shadow: 0 0 0 4px rgba(23,105,224,.09) !important;
+}
+
+input,
+select,
+textarea {
+  color: var(--rq-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa7b8;
+}
+
+/* ---------- Status pills ---------- */
+
+.status-badge,
+.booking-status,
+.emergency-status,
+.vol-status-pill {
+  border-radius: 999px !important;
+  font-weight: 750 !important;
+}
+
+.status-badge.pending,
+.booking-status.pending,
+.pending {
+  background: #fff3d6 !important;
+  color: #a16207 !important;
+}
+
+.status-badge.active,
+.booking-status.active,
+.active-status {
+  background: #eaf2ff !important;
+  color: var(--rq-blue) !important;
+}
+
+.status-badge.completed,
+.booking-status.completed,
+.completed {
+  background: #e9f8ef !important;
+  color: #16834e !important;
+}
+
+.status-badge.cancelled,
+.booking-status.cancelled,
+.cancelled {
+  background: #fff0f1 !important;
+  color: #c52d38 !important;
+}
+
+/* ---------- Maps ---------- */
+
+.map-container,
+.vol-map,
+.vol-leaflet-map,
+.map-modal {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--rq-border) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.map-footer,
+.map-location-bar {
+  background: rgba(255,255,255,.96) !important;
+}
+
+/* ---------- Login / registration cards ---------- */
+
+.login-container,
+.citizen-login-main,
+.hospital-login-container,
+.team-login-container,
+.volunteer-login-container,
+.register-container {
+  background: transparent !important;
+}
+
+.login-user-card,
+.citizen-login-card,
+.admin-login-card,
+.hospital-login-card,
+.team-login-card,
+.volunteer-login-card,
+.register-card {
+  background: #fff !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 45px rgba(20,55,100,.09) !important;
+}
+
+.login-user-card:hover {
+  border-color: #9fc4f7 !important;
+  box-shadow: 0 18px 45px rgba(23,105,224,.13) !important;
+}
+
+/* ---------- Chat ---------- */
+
+.hospital-chat-shell,
+.chat-container,
+.chat-page,
+.chat-window,
+.ai-chat-container,
+.ai-chat-panel {
+  border-radius: 20px !important;
+}
+
+.hospital-chat-topbar,
+.ai-chat-header {
+  background: linear-gradient(135deg, #075bbf, #2385ee) !important;
+  color: #fff !important;
+}
+
+/* ---------- Bottom navigation: phone style ---------- */
+
+.bottom-navigation,
+.hospital-bottom-nav,
+.vol-bottom-nav,
+.admin-bottom-nav,
+.bottom-nav {
+  background: rgba(255,255,255,.97) !important;
+  border-top: 1px solid #e2e8f1 !important;
+  box-shadow: 0 -8px 28px rgba(20,55,100,.08) !important;
+  backdrop-filter: blur(14px);
+}
+
+.bottom-navigation .active,
+.hospital-nav-item.active,
+.vol-nav-item.active,
+.nav-item.active,
+.admin-bottom-nav .active {
+  color: var(--rq-blue) !important;
+}
+
+.bottom-nav-icon,
+.hospital-nav-icon,
+.vol-nav-icon {
+  color: inherit;
+}
+
+/* ---------- Tables / lists ---------- */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead th {
+  background: #f4f7fb !important;
+  color: #526071 !important;
+}
+
+tbody tr:hover {
+  background: #f8fbff !important;
+}
+
+/* ---------- Alerts ---------- */
+
+.success-message,
+.success {
+  border-radius: 12px !important;
+  background: #eaf8f0 !important;
+  color: #167548 !important;
+}
+
+.error-message,
+.error {
+  border-radius: 12px !important;
+  background: #fff0f1 !important;
+  color: #bd2c38 !important;
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 769px) {
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main {
+    max-width: 1280px;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 18px !important;
+    transform: translateX(-50%) !important;
+    width: min(560px, calc(100% - 40px)) !important;
+    border: 1px solid #dfe7f1 !important;
+    border-radius: 20px !important;
+    padding: 8px !important;
+    z-index: 1000 !important;
+  }
+
+  .bottom-navigation .nav-item,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    border-radius: 14px !important;
+  }
+
+  .hero {
+    min-height: 620px;
+  }
+
+  .login-user-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navbar,
+  .login-navbar,
+  .top-header,
+  .hospital-header,
+  .admin-mobile-header,
+  .vol-topbar {
+    min-height: 62px !important;
+    height: auto !important;
+    padding: 10px 15px !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-buttons {
+    gap: 7px !important;
+  }
+
+  .nav-buttons .login-btn,
+  .nav-buttons .register-btn {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+    padding: 45px 18px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 9vw, 48px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero p {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .hero-buttons a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-visual {
+    width: 100% !important;
+    margin-top: 28px !important;
+  }
+
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main,
+  .admin-mobile-main {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .welcome-section,
+  .hospital-welcome,
+  .vol-welcome,
+  .vol-page-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px !important;
+  }
+
+  .top-service-buttons {
+    width: 100% !important;
+  }
+
+  .option-grid,
+  .quick-info-grid,
+  .service-grid,
+  .features-grid,
+  .users-grid,
+  .about-grid,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .vol-emergency-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-user-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-container,
+  .citizen-login-main,
+  .register-container {
+    padding: 20px 14px !important;
+  }
+
+  .login-user-card,
+  .citizen-login-card,
+  .admin-login-card,
+  .hospital-login-card,
+  .team-login-card,
+  .volunteer-login-card,
+  .register-card {
+    border-radius: 18px !important;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    width: auto !important;
+    transform: none !important;
+    border-radius: 18px !important;
+    padding: 7px !important;
+    z-index: 1200 !important;
+  }
+
+  .bottom-navigation button,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    min-height: 52px !important;
+    font-size: 10px !important;
+  }
+
+  .hospital-profile-text,
+  .vol-topbar-role {
+    display: none !important;
+  }
+
+  .page-title,
+  .page-header,
+  .page-header-card {
+    padding: 18px !important;
+  }
+
+  .section-title h1,
+  .section-title h2,
+  .section-heading h1,
+  .section-heading h2 {
+    font-size: 21px !important;
+  }
+
+  .feature-card,
+  .info-card,
+  .about-card,
+  .tech-card,
+  .process-card,
+  .user-card,
+  .summary-card,
+  .service-card,
+  .setting-card,
+  .option-card,
+  .quick-info-card,
+  .record-card,
+  .vol-panel,
+  .vol-person-card {
+    border-radius: 16px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .navbar .logo-text,
+  .login-logo-text {
+    font-size: 18px !important;
+  }
+
+  .nav-buttons .register-btn {
+    display: none !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 9px !important;
+  }
+
+  .summary-card,
+  .vol-status-card {
+    min-height: 92px !important;
+    padding: 11px !important;
+  }
+
+  .hero h1 {
+    font-size: 34px !important;
+  }
+}
+

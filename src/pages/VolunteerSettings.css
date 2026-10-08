@@ -1,0 +1,1628 @@
+/* =========================================================
+   RESQNET - VOLUNTEER SETTINGS
+   Clean responsive UI
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+.volunteer-settings-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  color: #172033;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  padding-bottom: 40px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.settings-header {
+  width: 100%;
+  min-height: 92px;
+  background: #ffffff;
+  border-bottom: 1px solid #e7eaf0;
+
+  display: flex;
+  align-items: center;
+
+  padding: 18px 5%;
+
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.settings-back-btn {
+  width: 46px;
+  height: 46px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: #eef4ff;
+  color: #1769ff;
+
+  font-size: 25px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s ease;
+}
+
+.settings-back-btn:hover {
+  background: #1769ff;
+  color: #ffffff;
+  transform: translateX(-2px);
+}
+
+.settings-header-title {
+  margin-left: 16px;
+}
+
+.settings-header-title h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 750;
+  color: #111827;
+}
+
+.settings-header-title p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #7b8495;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.settings-container {
+  width: calc(100% - 40px);
+  max-width: 900px;
+
+  margin: 32px auto;
+
+  background: #ffffff;
+
+  border: 1px solid #e6e9ef;
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 35px rgba(25, 45, 80, 0.07);
+}
+
+/* =========================================================
+   SETTING ITEM
+========================================================= */
+
+.setting-group {
+  width: 100%;
+}
+
+.setting-item {
+  width: 100%;
+  min-height: 86px;
+
+  padding: 18px 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #edf0f4;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.setting-item:hover {
+  background: #f8faff;
+}
+
+.setting-item:active {
+  transform: scale(0.997);
+}
+
+.setting-left {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.setting-icon {
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 23px;
+
+  margin-right: 16px;
+}
+
+.profile-icon {
+  background: #edf4ff;
+}
+
+.notification-icon {
+  background: #fff5df;
+}
+
+.security-icon {
+  background: #f1edff;
+}
+
+.location-icon {
+  background: #eaf9f0;
+}
+
+.logout-icon {
+  background: #fff0f0;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.setting-content {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.setting-content strong {
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #1a2233;
+
+  line-height: 1.3;
+}
+
+.setting-content span {
+  margin-top: 5px;
+
+  font-size: 13px;
+
+  color: #858d9c;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.setting-arrow {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f3f6fa;
+
+  color: #6f7888;
+
+  font-size: 24px;
+
+  margin-left: 15px;
+
+  transition:
+    transform 0.25s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.setting-item:hover .setting-arrow {
+  background: #eaf1ff;
+  color: #1769ff;
+}
+
+.setting-arrow.rotate {
+  transform: rotate(90deg);
+
+  background: #eaf1ff;
+  color: #1769ff;
+}
+
+/* =========================================================
+   SETTING PANEL
+========================================================= */
+
+.setting-panel {
+  background: #f8faff;
+
+  padding: 25px 28px 28px;
+
+  border-bottom: 1px solid #e8ecf2;
+
+  animation: panelOpen 0.22s ease;
+}
+
+@keyframes panelOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   NOTIFICATION SWITCH
+========================================================= */
+
+.switch-row {
+  min-height: 70px;
+
+  padding: 14px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #e7ebf1;
+}
+
+.switch-row:last-child {
+  border-bottom: none;
+}
+
+.switch-row > div:first-child {
+  display: flex;
+  flex-direction: column;
+
+  padding-right: 20px;
+}
+
+.switch-row strong {
+  font-size: 14px;
+  color: #202838;
+}
+
+.switch-row span {
+  margin-top: 4px;
+
+  font-size: 12px;
+  color: #8a92a0;
+}
+
+/* =========================================================
+   SWITCH
+========================================================= */
+
+.switch {
+  position: relative;
+
+  width: 48px;
+  height: 27px;
+
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+
+  cursor: pointer;
+
+  background: #d7dce5;
+
+  border-radius: 50px;
+
+  transition: 0.25s;
+}
+
+.slider::before {
+  content: "";
+
+  position: absolute;
+
+  width: 21px;
+  height: 21px;
+
+  left: 3px;
+  top: 3px;
+
+  background: #ffffff;
+
+  border-radius: 50%;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+  transition: 0.25s;
+}
+
+.switch input:checked + .slider {
+  background: #1769ff;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(21px);
+}
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+.security-heading,
+.location-heading {
+  margin-bottom: 22px;
+}
+
+.security-heading h3,
+.location-heading h3 {
+  margin: 0;
+
+  font-size: 18px;
+
+  color: #172033;
+}
+
+.security-heading p,
+.location-heading p {
+  margin: 7px 0 0;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  color: #7d8696;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.password-form {
+  width: 100%;
+  max-width: 620px;
+}
+
+.input-group {
+  width: 100%;
+
+  margin-bottom: 17px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 7px;
+
+  font-size: 13px;
+
+  font-weight: 650;
+
+  color: #3b4455;
+}
+
+.input-group input {
+  width: 100%;
+
+  min-height: 47px;
+
+  padding: 0 14px;
+
+  border: 1px solid #dce1e9;
+
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  color: #202838;
+
+  outline: none;
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input-group input::placeholder {
+  color: #a1a8b4;
+}
+
+.input-group input:focus {
+  border-color: #1769ff;
+
+  box-shadow:
+    0 0 0 4px rgba(23, 105, 255, 0.08);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.save-btn,
+.location-btn {
+  min-height: 46px;
+
+  padding: 0 20px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  font-size: 14px;
+
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.save-btn {
+  background: #1769ff;
+  color: #ffffff;
+}
+
+.save-btn:hover {
+  background: #0d5be0;
+
+  box-shadow:
+    0 8px 18px rgba(23, 105, 255, 0.22);
+
+  transform: translateY(-1px);
+}
+
+.location-btn {
+  background: #eaf1ff;
+  color: #1769ff;
+}
+
+.location-btn:hover {
+  background: #dce8ff;
+}
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.location-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 16px;
+}
+
+.location-buttons {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 5px;
+}
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.error-message {
+  margin-bottom: 15px;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background: #fff0f0;
+
+  border: 1px solid #ffd4d4;
+
+  color: #d93030;
+
+  font-size: 13px;
+}
+
+.success-message {
+  margin-bottom: 15px;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background: #ecfaf1;
+
+  border: 1px solid #ccefd9;
+
+  color: #168447;
+
+  font-size: 13px;
+}
+
+.location-message {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.logout-setting {
+  border-bottom: none;
+}
+
+.logout-setting .setting-content strong {
+  color: #d93636;
+}
+
+.logout-setting:hover {
+  background: #fff8f8;
+}
+
+.logout-setting:hover .setting-arrow {
+  background: #ffe9e9;
+  color: #d93636;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .settings-header {
+    min-height: 80px;
+
+    padding: 15px 20px;
+  }
+
+  .settings-header-title h1 {
+    font-size: 23px;
+  }
+
+  .settings-container {
+    width: calc(100% - 28px);
+
+    margin-top: 22px;
+
+    border-radius: 18px;
+  }
+
+  .setting-item {
+    min-height: 78px;
+
+    padding: 15px 17px;
+  }
+
+  .setting-icon {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+
+    margin-right: 13px;
+
+    font-size: 20px;
+  }
+
+  .setting-content strong {
+    font-size: 15px;
+  }
+
+  .setting-content span {
+    font-size: 12px;
+  }
+
+  .setting-panel {
+    padding: 20px;
+  }
+
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+  .volunteer-settings-page {
+    padding-bottom: 25px;
+  }
+
+  .settings-header {
+    padding: 14px 15px;
+  }
+
+  .settings-back-btn {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    font-size: 22px;
+  }
+
+  .settings-header-title {
+    margin-left: 12px;
+  }
+
+  .settings-header-title h1 {
+    font-size: 21px;
+  }
+
+  .settings-header-title p {
+    font-size: 12px;
+  }
+
+  .settings-container {
+    width: calc(100% - 20px);
+
+    margin: 16px auto;
+
+    border-radius: 16px;
+  }
+
+  .setting-item {
+    min-height: 74px;
+
+    padding: 13px 12px;
+  }
+
+  .setting-icon {
+    width: 42px;
+    height: 42px;
+
+    margin-right: 11px;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+  }
+
+  .setting-content {
+    padding-right: 5px;
+  }
+
+  .setting-content strong {
+    font-size: 14px;
+  }
+
+  .setting-content span {
+    font-size: 11px;
+
+    margin-top: 3px;
+  }
+
+  .setting-arrow {
+    width: 32px;
+    height: 32px;
+
+    font-size: 20px;
+
+    margin-left: 7px;
+  }
+
+  .setting-panel {
+    padding: 18px 15px 20px;
+  }
+
+  .switch-row {
+    min-height: 64px;
+  }
+
+  .switch-row strong {
+    font-size: 13px;
+  }
+
+  .switch-row span {
+    font-size: 11px;
+  }
+
+  .switch {
+    width: 44px;
+    height: 25px;
+  }
+
+  .slider::before {
+    width: 19px;
+    height: 19px;
+  }
+
+  .switch input:checked + .slider::before {
+    transform: translateX(19px);
+  }
+
+  .security-heading h3,
+  .location-heading h3 {
+    font-size: 16px;
+  }
+
+  .security-heading p,
+  .location-heading p {
+    font-size: 12px;
+  }
+
+  .input-group {
+    margin-bottom: 14px;
+  }
+
+  .input-group input {
+    min-height: 44px;
+
+    font-size: 13px;
+  }
+
+  .location-buttons {
+    flex-direction: column;
+  }
+
+  .location-btn,
+  .save-btn {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .setting-content span {
+    display: none;
+  }
+
+  .setting-item {
+    min-height: 68px;
+  }
+
+  .setting-icon {
+    width: 39px;
+    height: 39px;
+  }
+}
+
+/* ================= RESQNET UI UPDATE ================= */
+
+/* =========================================================
+   ResQNet Unified UI Theme
+   Responsive laptop + mobile visual system
+   ========================================================= */
+
+:root {
+  --rq-blue: #1769e0;
+  --rq-blue-dark: #0f56bd;
+  --rq-blue-soft: #eaf2ff;
+  --rq-red: #ef3d45;
+  --rq-red-dark: #d92832;
+  --rq-green: #1f9d61;
+  --rq-orange: #f59e0b;
+  --rq-purple: #7c4dff;
+  --rq-bg: #f5f8fc;
+  --rq-surface: #ffffff;
+  --rq-text: #14213d;
+  --rq-muted: #718096;
+  --rq-border: #e5ebf3;
+  --rq-radius: 18px;
+  --rq-shadow: 0 8px 28px rgba(20, 55, 100, 0.07);
+  --rq-shadow-hover: 0 14px 34px rgba(20, 55, 100, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--rq-bg) !important;
+  color: var(--rq-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Arial, sans-serif !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Public/Home navigation ---------- */
+
+.navbar,
+.login-navbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, 0.18) !important;
+}
+
+.navbar .logo,
+.navbar .nav-links a,
+.login-navbar .login-logo,
+.login-navbar .login-back {
+  color: #fff !important;
+}
+
+.navbar .logo-icon,
+.login-logo-icon {
+  background: rgba(255,255,255,.16) !important;
+  border-radius: 12px !important;
+}
+
+.navbar .nav-links a:hover {
+  color: #fff !important;
+  opacity: .82;
+}
+
+.login-navbar .login-back {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+
+/* ---------- Dashboard top bars ---------- */
+
+.top-header,
+.hospital-header,
+.admin-mobile-header,
+.vol-topbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, .18) !important;
+}
+
+.top-header .brand,
+.top-header .brand h2,
+.top-header .brand span,
+.top-header .header-right,
+.top-header button,
+.hospital-header .hospital-brand h1,
+.hospital-header .hospital-brand p,
+.hospital-header .hospital-profile-text strong,
+.hospital-header .hospital-profile-text span,
+.admin-mobile-header .mobile-logo,
+.admin-mobile-header .back-button,
+.admin-mobile-header .header-actions button,
+.vol-topbar .vol-brand,
+.vol-topbar .vol-topbar-role {
+  color: #fff !important;
+}
+
+.brand-logo,
+.hospital-logo,
+.mobile-logo-icon,
+.vol-brand-mark {
+  background: rgba(255,255,255,.16) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+}
+
+.hospital-profile-icon,
+.header-profile,
+.vol-top-avatar {
+  background: rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+
+/* ---------- Main surfaces ---------- */
+
+.citizen-app,
+.hospital-dashboard,
+.rescue-dashboard,
+.vol-dashboard,
+.admin-mobile-app {
+  background: var(--rq-bg) !important;
+}
+
+.main-content,
+.hospital-main,
+.dashboard-content,
+.vol-main,
+.admin-mobile-main {
+  color: var(--rq-text);
+}
+
+.welcome-section,
+.hospital-welcome,
+.welcome-card,
+.citizen-welcome-card,
+.page-header-card,
+.page-title,
+.page-header {
+  border-radius: var(--rq-radius);
+}
+
+.feature-card,
+.info-card,
+.about-card,
+.tech-card,
+.process-card,
+.user-card,
+.summary-card,
+.service-card,
+.setting-card,
+.option-card,
+.quick-info-card,
+.record-card,
+.vol-home-card,
+.vol-panel,
+.vol-person-card,
+.doctor-card,
+.hospital-card,
+.team-card,
+.recent-emergency,
+.empty-card,
+.medical-card,
+.booking-card,
+.notification-card,
+.profile-card,
+.emergency-item {
+  background: var(--rq-surface) !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: var(--rq-radius) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.feature-card:hover,
+.info-card:hover,
+.about-card:hover,
+.tech-card:hover,
+.process-card:hover,
+.user-card:hover,
+.summary-card:hover,
+.service-card:hover,
+.setting-card:hover,
+.option-card:hover,
+.quick-info-card:hover,
+.record-card:hover,
+.vol-home-card:hover,
+.vol-person-card:hover,
+.doctor-card:hover,
+.hospital-card:hover,
+.team-card:hover {
+  box-shadow: var(--rq-shadow-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Section headings ---------- */
+
+.section-title,
+.section-heading,
+.quick-info-title,
+.summary-heading,
+.vol-section-heading,
+.vol-panel-heading,
+.home-section-header {
+  color: var(--rq-text);
+}
+
+.section-title h1,
+.section-title h2,
+.section-heading h1,
+.section-heading h2,
+.quick-info-title h2,
+.summary-heading h2,
+.vol-section-heading h2,
+.vol-panel-heading h2,
+.home-section-header h2 {
+  color: var(--rq-text) !important;
+  font-weight: 800 !important;
+}
+
+.section-title p,
+.section-heading p,
+.quick-info-title p,
+.vol-section-heading p,
+.vol-panel-heading p {
+  color: var(--rq-muted) !important;
+}
+
+/* ---------- Home hero ---------- */
+
+.hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(35,133,238,.18), transparent 34%),
+    linear-gradient(180deg, #eef6ff 0%, #f8fbff 100%) !important;
+}
+
+.hero h1 {
+  color: var(--rq-text) !important;
+}
+
+.hero h1 span {
+  color: var(--rq-blue) !important;
+}
+
+.hero-badge {
+  background: var(--rq-blue-soft) !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d7e6ff !important;
+}
+
+.primary-btn,
+.register-btn,
+.citizen-login-button,
+.login-btn,
+.dispatch,
+.emergency-button,
+.complete-emergency-button,
+.report-emergency-btn,
+.save-btn,
+.profile-save-button {
+  background: linear-gradient(135deg, var(--rq-blue), #2385ee) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 7px 18px rgba(23,105,224,.18) !important;
+}
+
+.primary-btn:hover,
+.register-btn:hover,
+.citizen-login-button:hover,
+.login-btn:hover,
+.dispatch:hover,
+.save-btn:hover,
+.profile-save-button:hover {
+  background: linear-gradient(135deg, var(--rq-blue-dark), var(--rq-blue)) !important;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: #fff !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d6e4f8 !important;
+  border-radius: 12px !important;
+}
+
+/* Emergency actions stay clearly red */
+
+.emergency-button,
+.report-emergency-btn,
+.emergency-cta,
+.sos-button {
+  background: linear-gradient(135deg, #ef3d45, #d92832) !important;
+  color: #fff !important;
+}
+
+/* ---------- Dashboard emergency banner ---------- */
+
+.emergency-card {
+  border: 0 !important;
+  box-shadow: 0 12px 32px rgba(239,61,69,.18) !important;
+  border-radius: 20px !important;
+}
+
+/* ---------- Icons ---------- */
+
+.card-icon,
+.section-icon,
+.page-title-icon,
+.page-header-icon,
+.setting-icon,
+.quick-info-icon,
+.detail-icon,
+.summary-icon,
+.form-title-icon,
+.step-icon,
+.vol-card-icon,
+.service-icon,
+.hospital-logo {
+  border-radius: 14px !important;
+}
+
+/* ---------- Search / forms ---------- */
+
+.search-box,
+.nearby-search-box,
+.login-input-wrapper,
+.input-group,
+.password-input-wrapper,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.login-form-group input,
+.login-form-group select,
+.login-form-group textarea,
+.form-control,
+.ai-input,
+.ai-chat-form textarea {
+  border-color: #dfe7f1 !important;
+}
+
+.search-box:focus-within,
+.nearby-search-box:focus-within,
+.login-input-wrapper:focus-within,
+.input-group:focus-within,
+.password-input-wrapper:focus-within {
+  border-color: #8ab7f5 !important;
+  box-shadow: 0 0 0 4px rgba(23,105,224,.09) !important;
+}
+
+input,
+select,
+textarea {
+  color: var(--rq-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa7b8;
+}
+
+/* ---------- Status pills ---------- */
+
+.status-badge,
+.booking-status,
+.emergency-status,
+.vol-status-pill {
+  border-radius: 999px !important;
+  font-weight: 750 !important;
+}
+
+.status-badge.pending,
+.booking-status.pending,
+.pending {
+  background: #fff3d6 !important;
+  color: #a16207 !important;
+}
+
+.status-badge.active,
+.booking-status.active,
+.active-status {
+  background: #eaf2ff !important;
+  color: var(--rq-blue) !important;
+}
+
+.status-badge.completed,
+.booking-status.completed,
+.completed {
+  background: #e9f8ef !important;
+  color: #16834e !important;
+}
+
+.status-badge.cancelled,
+.booking-status.cancelled,
+.cancelled {
+  background: #fff0f1 !important;
+  color: #c52d38 !important;
+}
+
+/* ---------- Maps ---------- */
+
+.map-container,
+.vol-map,
+.vol-leaflet-map,
+.map-modal {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--rq-border) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.map-footer,
+.map-location-bar {
+  background: rgba(255,255,255,.96) !important;
+}
+
+/* ---------- Login / registration cards ---------- */
+
+.login-container,
+.citizen-login-main,
+.hospital-login-container,
+.team-login-container,
+.volunteer-login-container,
+.register-container {
+  background: transparent !important;
+}
+
+.login-user-card,
+.citizen-login-card,
+.admin-login-card,
+.hospital-login-card,
+.team-login-card,
+.volunteer-login-card,
+.register-card {
+  background: #fff !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 45px rgba(20,55,100,.09) !important;
+}
+
+.login-user-card:hover {
+  border-color: #9fc4f7 !important;
+  box-shadow: 0 18px 45px rgba(23,105,224,.13) !important;
+}
+
+/* ---------- Chat ---------- */
+
+.hospital-chat-shell,
+.chat-container,
+.chat-page,
+.chat-window,
+.ai-chat-container,
+.ai-chat-panel {
+  border-radius: 20px !important;
+}
+
+.hospital-chat-topbar,
+.ai-chat-header {
+  background: linear-gradient(135deg, #075bbf, #2385ee) !important;
+  color: #fff !important;
+}
+
+/* ---------- Bottom navigation: phone style ---------- */
+
+.bottom-navigation,
+.hospital-bottom-nav,
+.vol-bottom-nav,
+.admin-bottom-nav,
+.bottom-nav {
+  background: rgba(255,255,255,.97) !important;
+  border-top: 1px solid #e2e8f1 !important;
+  box-shadow: 0 -8px 28px rgba(20,55,100,.08) !important;
+  backdrop-filter: blur(14px);
+}
+
+.bottom-navigation .active,
+.hospital-nav-item.active,
+.vol-nav-item.active,
+.nav-item.active,
+.admin-bottom-nav .active {
+  color: var(--rq-blue) !important;
+}
+
+.bottom-nav-icon,
+.hospital-nav-icon,
+.vol-nav-icon {
+  color: inherit;
+}
+
+/* ---------- Tables / lists ---------- */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead th {
+  background: #f4f7fb !important;
+  color: #526071 !important;
+}
+
+tbody tr:hover {
+  background: #f8fbff !important;
+}
+
+/* ---------- Alerts ---------- */
+
+.success-message,
+.success {
+  border-radius: 12px !important;
+  background: #eaf8f0 !important;
+  color: #167548 !important;
+}
+
+.error-message,
+.error {
+  border-radius: 12px !important;
+  background: #fff0f1 !important;
+  color: #bd2c38 !important;
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 769px) {
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main {
+    max-width: 1280px;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 18px !important;
+    transform: translateX(-50%) !important;
+    width: min(560px, calc(100% - 40px)) !important;
+    border: 1px solid #dfe7f1 !important;
+    border-radius: 20px !important;
+    padding: 8px !important;
+    z-index: 1000 !important;
+  }
+
+  .bottom-navigation .nav-item,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    border-radius: 14px !important;
+  }
+
+  .hero {
+    min-height: 620px;
+  }
+
+  .login-user-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navbar,
+  .login-navbar,
+  .top-header,
+  .hospital-header,
+  .admin-mobile-header,
+  .vol-topbar {
+    min-height: 62px !important;
+    height: auto !important;
+    padding: 10px 15px !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-buttons {
+    gap: 7px !important;
+  }
+
+  .nav-buttons .login-btn,
+  .nav-buttons .register-btn {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+    padding: 45px 18px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 9vw, 48px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero p {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .hero-buttons a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-visual {
+    width: 100% !important;
+    margin-top: 28px !important;
+  }
+
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main,
+  .admin-mobile-main {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .welcome-section,
+  .hospital-welcome,
+  .vol-welcome,
+  .vol-page-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px !important;
+  }
+
+  .top-service-buttons {
+    width: 100% !important;
+  }
+
+  .option-grid,
+  .quick-info-grid,
+  .service-grid,
+  .features-grid,
+  .users-grid,
+  .about-grid,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .vol-emergency-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-user-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-container,
+  .citizen-login-main,
+  .register-container {
+    padding: 20px 14px !important;
+  }
+
+  .login-user-card,
+  .citizen-login-card,
+  .admin-login-card,
+  .hospital-login-card,
+  .team-login-card,
+  .volunteer-login-card,
+  .register-card {
+    border-radius: 18px !important;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    width: auto !important;
+    transform: none !important;
+    border-radius: 18px !important;
+    padding: 7px !important;
+    z-index: 1200 !important;
+  }
+
+  .bottom-navigation button,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    min-height: 52px !important;
+    font-size: 10px !important;
+  }
+
+  .hospital-profile-text,
+  .vol-topbar-role {
+    display: none !important;
+  }
+
+  .page-title,
+  .page-header,
+  .page-header-card {
+    padding: 18px !important;
+  }
+
+  .section-title h1,
+  .section-title h2,
+  .section-heading h1,
+  .section-heading h2 {
+    font-size: 21px !important;
+  }
+
+  .feature-card,
+  .info-card,
+  .about-card,
+  .tech-card,
+  .process-card,
+  .user-card,
+  .summary-card,
+  .service-card,
+  .setting-card,
+  .option-card,
+  .quick-info-card,
+  .record-card,
+  .vol-panel,
+  .vol-person-card {
+    border-radius: 16px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .navbar .logo-text,
+  .login-logo-text {
+    font-size: 18px !important;
+  }
+
+  .nav-buttons .register-btn {
+    display: none !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 9px !important;
+  }
+
+  .summary-card,
+  .vol-status-card {
+    min-height: 92px !important;
+    padding: 11px !important;
+  }
+
+  .hero h1 {
+    font-size: 34px !important;
+  }
+}
+

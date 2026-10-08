@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ResQNet medical emblem</title>
+  <desc id="desc">Red and blue heart with medical cross and ECG, held by blue hands beneath an emergency beacon.</desc>
+  <defs>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff5555"/><stop offset=".55" stop-color="#f21d25"/><stop offset="1" stop-color="#b90018"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#20b7ff"/><stop offset=".55" stop-color="#0874d5"/><stop offset="1" stop-color="#063b87"/>
+    </linearGradient>
+    <linearGradient id="hand" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#16a9fa"/><stop offset="1" stop-color="#06458e"/>
+    </linearGradient>
+    <linearGradient id="beacon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6666"/><stop offset=".6" stop-color="#f21c25"/><stop offset="1" stop-color="#b90018"/>
+    </linearGradient>
+  </defs>
+
+  <!-- protective outer arcs -->
+  <path d="M83 385C45 321 48 226 91 158c22-35 52-62 89-79-54 39-91 99-100 166-8 58 6 111 31 155"
+        fill="none" stroke="url(#blue)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M429 385c38-64 35-159-8-227-22-35-52-62-89-79 54 39 91 99 100 166 8 58-6 111-31 155"
+        fill="none" stroke="url(#blue)" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- heart halves -->
+  <path d="M256 406 116 276c-48-45-43-120 8-151 46-28 100-8 132 34Z" fill="url(#red)"/>
+  <path d="M256 406 396 276c48-45 43-120-8-151-46-28-100-8-132 34Z" fill="url(#blue)"/>
+  <path d="M256 406 116 276c-48-45-43-120 8-151 46-28 100-8 132 34Z" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="3"/>
+  <path d="M256 406 396 276c48-45 43-120-8-151-46-28-100-8-132 34Z" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="3"/>
+
+  <!-- ECG line -->
+  <path d="M91 281h61l16-18 14 45 19-91 23 64h32" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M256 281h31l16-18 14 45 19-91 23 64h62" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- medical cross -->
+  <path d="M231 214h50v48h48v50h-48v48h-50v-48h-48v-50h48Z" fill="#fff"/>
+
+  <!-- cupped hands -->
+  <path d="M74 329c18 4 28 28 43 48 17 22 42 35 74 48l49 21-22 31c-51-12-94-34-125-67-24-26-39-52-42-69-2-11 8-16 23-12Z"
+        fill="url(#hand)" stroke="#0873c8" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M438 329c-18 4-28 28-43 48-17 22-42 35-74 48l-49 21 22 31c51-12 94-34 125-67 24-26 39-52 42-69 2-11-8-16-23-12Z"
+        fill="url(#hand)" stroke="#0873c8" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M195 440c22 10 42 16 61 19 19-3 39-9 61-19" fill="none" stroke="#0b5aa9" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- emergency beacon -->
+  <g>
+    <path d="M214 113c0-25 18-44 42-44s42 19 42 44v34h-84Z" fill="url(#beacon)" stroke="#c91520" stroke-width="4"/>
+    <path d="M226 104c3-13 12-21 22-24" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+    <rect x="205" y="146" width="102" height="18" rx="9" fill="#092d59" stroke="#1c5c9b" stroke-width="3"/>
+    <g fill="#f3262e" stroke="#d71920" stroke-width="3">
+      <rect x="249" y="28" width="14" height="32" rx="7"/>
+      <rect x="186" y="55" width="14" height="35" rx="7" transform="rotate(-45 193 72)"/>
+      <rect x="312" y="55" width="14" height="35" rx="7" transform="rotate(45 319 72)"/>
+      <rect x="166" y="105" width="34" height="14" rx="7"/>
+      <rect x="312" y="105" width="34" height="14" rx="7"/>
+    </g>
+  </g>
+</svg>

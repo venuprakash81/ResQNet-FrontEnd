@@ -1,0 +1,1875 @@
+/* =========================================================
+   MEDICAL EMERGENCIES
+   RESQNET PROFESSIONAL UI
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+  background: #f4f7fb;
+  color: #1d2939;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.medical-emergency-page {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      180deg,
+      #eef5ff 0,
+      #f7f9fc 330px,
+      #f4f7fb 100%
+    );
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.medical-header {
+  min-height: 90px;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+
+  gap: 25px;
+
+  padding: 0 6%;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.97
+  );
+
+  border-bottom: 1px solid #e1e8f1;
+
+  box-shadow:
+    0 5px 25px
+    rgba(
+      20,
+      45,
+      80,
+      0.07
+    );
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.medical-brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.medical-brand-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #174bbd
+    );
+
+  font-size: 22px;
+
+  box-shadow:
+    0 8px 20px
+    rgba(
+      37,
+      99,
+      235,
+      0.23
+    );
+}
+
+.medical-brand h2 {
+  margin: 0;
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  color: #16243b;
+}
+
+.medical-brand span {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  color: #8491a5;
+}
+
+
+/* =========================================================
+   HEADER TITLE
+   ========================================================= */
+
+.medical-header-title {
+  text-align: center;
+}
+
+.medical-header-title h1 {
+  margin: 0;
+
+  font-size: 24px;
+
+  font-weight: 800;
+
+  color: #17253d;
+}
+
+.medical-header-title p {
+  margin: 5px 0 0;
+
+  font-size: 12px;
+
+  color: #7d899c;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.medical-dashboard-btn {
+  justify-self: end;
+
+  padding: 11px 18px;
+
+  border: 1px solid #dbe4ef;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #334258;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  transition: 0.25s ease;
+}
+
+.medical-dashboard-btn:hover {
+  color: #1d5dc9;
+
+  background: #f3f7ff;
+
+  border-color: #b8cdef;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.medical-content {
+  width: min(
+    1400px,
+    92%
+  );
+
+  margin: auto;
+
+  padding: 40px 0 70px;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.medical-summary {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 20px 23px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid #e1e8f1;
+
+  border-radius: 16px;
+
+  background: white;
+
+  box-shadow:
+    0 8px 25px
+    rgba(
+      31,
+      52,
+      82,
+      0.06
+    );
+}
+
+.medical-summary-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+}
+
+.medical-summary-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #edf4ff;
+
+  font-size: 23px;
+}
+
+.medical-summary-left div:last-child {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.medical-summary-left span {
+  font-size: 11px;
+
+  font-weight: 600;
+
+  color: #8290a4;
+}
+
+.medical-summary-left strong {
+  margin-top: 2px;
+
+  font-size: 25px;
+
+  color: #1d2b42;
+}
+
+
+/* =========================================================
+   REFRESH
+   ========================================================= */
+
+.refresh-medical-btn {
+  padding: 10px 16px;
+
+  border: 1px solid #cfddf0;
+
+  border-radius: 9px;
+
+  background: #f4f8ff;
+
+  color: #2460bd;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.refresh-medical-btn:hover {
+  background: #e8f1ff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.medical-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        390px,
+        1fr
+      )
+    );
+
+  gap: 24px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.medical-card {
+  overflow: hidden;
+
+  border: 1px solid #e0e7ef;
+
+  border-radius: 18px;
+
+  background: white;
+
+  box-shadow:
+    0 8px 27px
+    rgba(
+      31,
+      52,
+      82,
+      0.07
+    );
+
+  transition: 0.25s ease;
+}
+
+.medical-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 17px 40px
+    rgba(
+      31,
+      52,
+      82,
+      0.12
+    );
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.medical-card-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 18px 20px;
+
+  border-bottom: 1px solid #edf1f5;
+}
+
+.medical-report-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  color: #8a97a9;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+}
+
+.medical-card-header strong {
+  font-size: 15px;
+
+  color: #29384e;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.medical-status {
+  padding: 6px 10px;
+
+  border-radius: 50px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+.medical-status.pending {
+  color: #956500;
+
+  background: #fff4d7;
+}
+
+.medical-status.assigned {
+  color: #1d5cae;
+
+  background: #e7f1ff;
+}
+
+.medical-status.in-progress {
+  color: #6943ae;
+
+  background: #f0e9ff;
+}
+
+.medical-status.resolved,
+.medical-status.completed {
+  color: #147246;
+
+  background: #e4f7ec;
+}
+
+.medical-status.cancelled {
+  color: #a33c3c;
+
+  background: #ffebeb;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.medical-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 20px;
+}
+
+.medical-title-icon {
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #fff0f0;
+
+  font-size: 24px;
+}
+
+.medical-title h2 {
+  margin: 0 0 7px;
+
+  font-size: 18px;
+
+  color: #24334a;
+}
+
+
+/* =========================================================
+   SEVERITY
+   ========================================================= */
+
+.medical-severity {
+  display: inline-flex;
+
+  padding: 5px 10px;
+
+  border-radius: 50px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+.medical-severity.low {
+  color: #147247;
+
+  background: #e5f7ed;
+}
+
+.medical-severity.medium {
+  color: #946000;
+
+  background: #fff2d6;
+}
+
+.medical-severity.high {
+  color: #b14b0a;
+
+  background: #fff0e5;
+}
+
+.medical-severity.critical {
+  color: #b42222;
+
+  background: #ffe6e6;
+}
+
+
+/* =========================================================
+   DETAILS
+   ========================================================= */
+
+.medical-details {
+  margin: 0 20px;
+
+  border-top: 1px solid #edf1f5;
+}
+
+.medical-detail {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  padding: 11px 0;
+
+  border-bottom: 1px solid #f0f3f7;
+}
+
+.medical-detail:last-child {
+  border-bottom: none;
+}
+
+.medical-detail span {
+  font-size: 10px;
+
+  font-weight: 700;
+
+  color: #8a96a8;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
+}
+
+.medical-detail strong {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1.5;
+
+  color: #35445a;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.medical-image {
+  height: 190px;
+
+  margin: 15px 20px 0;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background: #eef2f6;
+}
+
+.medical-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: 0.35s ease;
+}
+
+.medical-card:hover .medical-image img {
+  transform: scale(1.04);
+}
+
+
+/* =========================================================
+   MAP
+   ========================================================= */
+
+.medical-map {
+  height: 230px;
+
+  margin: 15px 20px 0;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  border: 1px solid #dfe6ef;
+}
+
+.medical-map .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.medical-map .leaflet-control-zoom {
+  border: none !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.medical-card-footer {
+  padding: 15px 20px 20px;
+}
+
+.view-location-btn {
+  width: 100%;
+
+  min-height: 42px;
+
+  border: 1px solid #c9dafa;
+
+  border-radius: 9px;
+
+  background: #f3f7ff;
+
+  color: #205dbd;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.view-location-btn:hover {
+  background: #e7f0ff;
+
+  border-color: #9ebbe9;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.medical-error {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 16px 18px;
+
+  margin-bottom: 22px;
+
+  border: 1px solid #f1caca;
+
+  border-radius: 12px;
+
+  background: #fff6f6;
+
+  color: #a33d3d;
+}
+
+.medical-error > span {
+  font-size: 22px;
+}
+
+.medical-error div {
+  flex: 1;
+}
+
+.medical-error strong {
+  font-size: 13px;
+}
+
+.medical-error p {
+  margin: 4px 0 0;
+
+  font-size: 11px;
+}
+
+.medical-error button {
+  padding: 9px 13px;
+
+  border: 1px solid #e6baba;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #a33d3d;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.medical-empty {
+  max-width: 560px;
+
+  margin: 60px auto;
+
+  padding: 50px 30px;
+
+  text-align: center;
+
+  border: 1px solid #e0e7ef;
+
+  border-radius: 18px;
+
+  background: white;
+
+  box-shadow:
+    0 10px 30px
+    rgba(
+      31,
+      52,
+      82,
+      0.06
+    );
+}
+
+.medical-empty-icon {
+  width: 75px;
+  height: 75px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background: #eef4ff;
+
+  font-size: 33px;
+}
+
+.medical-empty h2 {
+  margin: 0;
+
+  font-size: 22px;
+
+  color: #27364d;
+}
+
+.medical-empty p {
+  margin: 10px 0 0;
+
+  color: #7e8b9e;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.medical-loading {
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf4ff,
+      #f7f9fc
+    );
+}
+
+.medical-loading-card {
+  width: min(
+    420px,
+    100%
+  );
+
+  padding: 45px 30px;
+
+  text-align: center;
+
+  border: 1px solid #e1e8f1;
+
+  border-radius: 18px;
+
+  background: white;
+
+  box-shadow:
+    0 15px 40px
+    rgba(
+      31,
+      51,
+      80,
+      0.09
+    );
+}
+
+.medical-spinner {
+  width: 42px;
+  height: 42px;
+
+  margin: 0 auto 20px;
+
+  border: 4px solid #e5edf8;
+
+  border-top-color: #2563eb;
+
+  border-radius: 50%;
+
+  animation:
+    medical-spin
+    0.8s linear infinite;
+}
+
+@keyframes medical-spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+.medical-loading-card h2 {
+  margin: 0;
+
+  color: #26354c;
+
+  font-size: 18px;
+}
+
+.medical-loading-card p {
+  margin: 8px 0 0;
+
+  color: #8190a4;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .medical-header {
+    grid-template-columns:
+      auto
+      1fr
+      auto;
+
+    padding: 0 4%;
+
+    gap: 15px;
+  }
+
+  .medical-header-title h1 {
+    font-size: 20px;
+  }
+
+  .medical-header-title p {
+    font-size: 10px;
+  }
+
+  .medical-content {
+    width: 94%;
+  }
+
+  .medical-grid {
+    grid-template-columns:
+      repeat(
+        auto-fit,
+        minmax(
+          340px,
+          1fr
+        )
+      );
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .medical-header {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    padding: 15px 5%;
+
+    min-height: auto;
+  }
+
+  .medical-header-title {
+    width: 100%;
+
+    order: 3;
+
+    text-align: left;
+  }
+
+  .medical-header-title h1 {
+    font-size: 19px;
+  }
+
+  .medical-header-title p {
+    margin-top: 3px;
+  }
+
+  .medical-brand span {
+    display: none;
+  }
+
+  .medical-dashboard-btn {
+    margin-left: auto;
+  }
+
+  .medical-content {
+    width: 92%;
+
+    padding-top: 25px;
+  }
+
+  .medical-summary {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 15px;
+  }
+
+  .refresh-medical-btn {
+    width: 100%;
+  }
+
+  .medical-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 430px) {
+
+  .medical-header {
+    padding: 13px 4%;
+  }
+
+  .medical-brand-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 19px;
+  }
+
+  .medical-brand h2 {
+    font-size: 17px;
+  }
+
+  .medical-dashboard-btn {
+    padding: 9px 11px;
+
+    font-size: 11px;
+  }
+
+  .medical-content {
+    width: 94%;
+  }
+
+  .medical-card {
+    border-radius: 15px;
+  }
+
+  .medical-card-header {
+    padding: 15px;
+  }
+
+  .medical-title {
+    padding: 16px;
+  }
+
+  .medical-details {
+    margin: 0 16px;
+  }
+
+  .medical-image {
+    height: 165px;
+
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .medical-map {
+    height: 200px;
+
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .medical-card-footer {
+    padding: 13px 16px 16px;
+  }
+
+}
+
+/* ================= RESQNET UI UPDATE ================= */
+
+/* =========================================================
+   ResQNet Unified UI Theme
+   Responsive laptop + mobile visual system
+   ========================================================= */
+
+:root {
+  --rq-blue: #1769e0;
+  --rq-blue-dark: #0f56bd;
+  --rq-blue-soft: #eaf2ff;
+  --rq-red: #ef3d45;
+  --rq-red-dark: #d92832;
+  --rq-green: #1f9d61;
+  --rq-orange: #f59e0b;
+  --rq-purple: #7c4dff;
+  --rq-bg: #f5f8fc;
+  --rq-surface: #ffffff;
+  --rq-text: #14213d;
+  --rq-muted: #718096;
+  --rq-border: #e5ebf3;
+  --rq-radius: 18px;
+  --rq-shadow: 0 8px 28px rgba(20, 55, 100, 0.07);
+  --rq-shadow-hover: 0 14px 34px rgba(20, 55, 100, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--rq-bg) !important;
+  color: var(--rq-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Arial, sans-serif !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Public/Home navigation ---------- */
+
+.navbar,
+.login-navbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, 0.18) !important;
+}
+
+.navbar .logo,
+.navbar .nav-links a,
+.login-navbar .login-logo,
+.login-navbar .login-back {
+  color: #fff !important;
+}
+
+.navbar .logo-icon,
+.login-logo-icon {
+  background: rgba(255,255,255,.16) !important;
+  border-radius: 12px !important;
+}
+
+.navbar .nav-links a:hover {
+  color: #fff !important;
+  opacity: .82;
+}
+
+.login-navbar .login-back {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+
+/* ---------- Dashboard top bars ---------- */
+
+.top-header,
+.hospital-header,
+.admin-mobile-header,
+.vol-topbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, .18) !important;
+}
+
+.top-header .brand,
+.top-header .brand h2,
+.top-header .brand span,
+.top-header .header-right,
+.top-header button,
+.hospital-header .hospital-brand h1,
+.hospital-header .hospital-brand p,
+.hospital-header .hospital-profile-text strong,
+.hospital-header .hospital-profile-text span,
+.admin-mobile-header .mobile-logo,
+.admin-mobile-header .back-button,
+.admin-mobile-header .header-actions button,
+.vol-topbar .vol-brand,
+.vol-topbar .vol-topbar-role {
+  color: #fff !important;
+}
+
+.brand-logo,
+.hospital-logo,
+.mobile-logo-icon,
+.vol-brand-mark {
+  background: rgba(255,255,255,.16) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+}
+
+.hospital-profile-icon,
+.header-profile,
+.vol-top-avatar {
+  background: rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+
+/* ---------- Main surfaces ---------- */
+
+.citizen-app,
+.hospital-dashboard,
+.rescue-dashboard,
+.vol-dashboard,
+.admin-mobile-app {
+  background: var(--rq-bg) !important;
+}
+
+.main-content,
+.hospital-main,
+.dashboard-content,
+.vol-main,
+.admin-mobile-main {
+  color: var(--rq-text);
+}
+
+.welcome-section,
+.hospital-welcome,
+.welcome-card,
+.citizen-welcome-card,
+.page-header-card,
+.page-title,
+.page-header {
+  border-radius: var(--rq-radius);
+}
+
+.feature-card,
+.info-card,
+.about-card,
+.tech-card,
+.process-card,
+.user-card,
+.summary-card,
+.service-card,
+.setting-card,
+.option-card,
+.quick-info-card,
+.record-card,
+.vol-home-card,
+.vol-panel,
+.vol-person-card,
+.doctor-card,
+.hospital-card,
+.team-card,
+.recent-emergency,
+.empty-card,
+.medical-card,
+.booking-card,
+.notification-card,
+.profile-card,
+.emergency-item {
+  background: var(--rq-surface) !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: var(--rq-radius) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.feature-card:hover,
+.info-card:hover,
+.about-card:hover,
+.tech-card:hover,
+.process-card:hover,
+.user-card:hover,
+.summary-card:hover,
+.service-card:hover,
+.setting-card:hover,
+.option-card:hover,
+.quick-info-card:hover,
+.record-card:hover,
+.vol-home-card:hover,
+.vol-person-card:hover,
+.doctor-card:hover,
+.hospital-card:hover,
+.team-card:hover {
+  box-shadow: var(--rq-shadow-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Section headings ---------- */
+
+.section-title,
+.section-heading,
+.quick-info-title,
+.summary-heading,
+.vol-section-heading,
+.vol-panel-heading,
+.home-section-header {
+  color: var(--rq-text);
+}
+
+.section-title h1,
+.section-title h2,
+.section-heading h1,
+.section-heading h2,
+.quick-info-title h2,
+.summary-heading h2,
+.vol-section-heading h2,
+.vol-panel-heading h2,
+.home-section-header h2 {
+  color: var(--rq-text) !important;
+  font-weight: 800 !important;
+}
+
+.section-title p,
+.section-heading p,
+.quick-info-title p,
+.vol-section-heading p,
+.vol-panel-heading p {
+  color: var(--rq-muted) !important;
+}
+
+/* ---------- Home hero ---------- */
+
+.hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(35,133,238,.18), transparent 34%),
+    linear-gradient(180deg, #eef6ff 0%, #f8fbff 100%) !important;
+}
+
+.hero h1 {
+  color: var(--rq-text) !important;
+}
+
+.hero h1 span {
+  color: var(--rq-blue) !important;
+}
+
+.hero-badge {
+  background: var(--rq-blue-soft) !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d7e6ff !important;
+}
+
+.primary-btn,
+.register-btn,
+.citizen-login-button,
+.login-btn,
+.dispatch,
+.emergency-button,
+.complete-emergency-button,
+.report-emergency-btn,
+.save-btn,
+.profile-save-button {
+  background: linear-gradient(135deg, var(--rq-blue), #2385ee) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 7px 18px rgba(23,105,224,.18) !important;
+}
+
+.primary-btn:hover,
+.register-btn:hover,
+.citizen-login-button:hover,
+.login-btn:hover,
+.dispatch:hover,
+.save-btn:hover,
+.profile-save-button:hover {
+  background: linear-gradient(135deg, var(--rq-blue-dark), var(--rq-blue)) !important;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: #fff !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d6e4f8 !important;
+  border-radius: 12px !important;
+}
+
+/* Emergency actions stay clearly red */
+
+.emergency-button,
+.report-emergency-btn,
+.emergency-cta,
+.sos-button {
+  background: linear-gradient(135deg, #ef3d45, #d92832) !important;
+  color: #fff !important;
+}
+
+/* ---------- Dashboard emergency banner ---------- */
+
+.emergency-card {
+  border: 0 !important;
+  box-shadow: 0 12px 32px rgba(239,61,69,.18) !important;
+  border-radius: 20px !important;
+}
+
+/* ---------- Icons ---------- */
+
+.card-icon,
+.section-icon,
+.page-title-icon,
+.page-header-icon,
+.setting-icon,
+.quick-info-icon,
+.detail-icon,
+.summary-icon,
+.form-title-icon,
+.step-icon,
+.vol-card-icon,
+.service-icon,
+.hospital-logo {
+  border-radius: 14px !important;
+}
+
+/* ---------- Search / forms ---------- */
+
+.search-box,
+.nearby-search-box,
+.login-input-wrapper,
+.input-group,
+.password-input-wrapper,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.login-form-group input,
+.login-form-group select,
+.login-form-group textarea,
+.form-control,
+.ai-input,
+.ai-chat-form textarea {
+  border-color: #dfe7f1 !important;
+}
+
+.search-box:focus-within,
+.nearby-search-box:focus-within,
+.login-input-wrapper:focus-within,
+.input-group:focus-within,
+.password-input-wrapper:focus-within {
+  border-color: #8ab7f5 !important;
+  box-shadow: 0 0 0 4px rgba(23,105,224,.09) !important;
+}
+
+input,
+select,
+textarea {
+  color: var(--rq-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa7b8;
+}
+
+/* ---------- Status pills ---------- */
+
+.status-badge,
+.booking-status,
+.emergency-status,
+.vol-status-pill {
+  border-radius: 999px !important;
+  font-weight: 750 !important;
+}
+
+.status-badge.pending,
+.booking-status.pending,
+.pending {
+  background: #fff3d6 !important;
+  color: #a16207 !important;
+}
+
+.status-badge.active,
+.booking-status.active,
+.active-status {
+  background: #eaf2ff !important;
+  color: var(--rq-blue) !important;
+}
+
+.status-badge.completed,
+.booking-status.completed,
+.completed {
+  background: #e9f8ef !important;
+  color: #16834e !important;
+}
+
+.status-badge.cancelled,
+.booking-status.cancelled,
+.cancelled {
+  background: #fff0f1 !important;
+  color: #c52d38 !important;
+}
+
+/* ---------- Maps ---------- */
+
+.map-container,
+.vol-map,
+.vol-leaflet-map,
+.map-modal {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--rq-border) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.map-footer,
+.map-location-bar {
+  background: rgba(255,255,255,.96) !important;
+}
+
+/* ---------- Login / registration cards ---------- */
+
+.login-container,
+.citizen-login-main,
+.hospital-login-container,
+.team-login-container,
+.volunteer-login-container,
+.register-container {
+  background: transparent !important;
+}
+
+.login-user-card,
+.citizen-login-card,
+.admin-login-card,
+.hospital-login-card,
+.team-login-card,
+.volunteer-login-card,
+.register-card {
+  background: #fff !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 45px rgba(20,55,100,.09) !important;
+}
+
+.login-user-card:hover {
+  border-color: #9fc4f7 !important;
+  box-shadow: 0 18px 45px rgba(23,105,224,.13) !important;
+}
+
+/* ---------- Chat ---------- */
+
+.hospital-chat-shell,
+.chat-container,
+.chat-page,
+.chat-window,
+.ai-chat-container,
+.ai-chat-panel {
+  border-radius: 20px !important;
+}
+
+.hospital-chat-topbar,
+.ai-chat-header {
+  background: linear-gradient(135deg, #075bbf, #2385ee) !important;
+  color: #fff !important;
+}
+
+/* ---------- Bottom navigation: phone style ---------- */
+
+.bottom-navigation,
+.hospital-bottom-nav,
+.vol-bottom-nav,
+.admin-bottom-nav,
+.bottom-nav {
+  background: rgba(255,255,255,.97) !important;
+  border-top: 1px solid #e2e8f1 !important;
+  box-shadow: 0 -8px 28px rgba(20,55,100,.08) !important;
+  backdrop-filter: blur(14px);
+}
+
+.bottom-navigation .active,
+.hospital-nav-item.active,
+.vol-nav-item.active,
+.nav-item.active,
+.admin-bottom-nav .active {
+  color: var(--rq-blue) !important;
+}
+
+.bottom-nav-icon,
+.hospital-nav-icon,
+.vol-nav-icon {
+  color: inherit;
+}
+
+/* ---------- Tables / lists ---------- */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead th {
+  background: #f4f7fb !important;
+  color: #526071 !important;
+}
+
+tbody tr:hover {
+  background: #f8fbff !important;
+}
+
+/* ---------- Alerts ---------- */
+
+.success-message,
+.success {
+  border-radius: 12px !important;
+  background: #eaf8f0 !important;
+  color: #167548 !important;
+}
+
+.error-message,
+.error {
+  border-radius: 12px !important;
+  background: #fff0f1 !important;
+  color: #bd2c38 !important;
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 769px) {
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main {
+    max-width: 1280px;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 18px !important;
+    transform: translateX(-50%) !important;
+    width: min(560px, calc(100% - 40px)) !important;
+    border: 1px solid #dfe7f1 !important;
+    border-radius: 20px !important;
+    padding: 8px !important;
+    z-index: 1000 !important;
+  }
+
+  .bottom-navigation .nav-item,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    border-radius: 14px !important;
+  }
+
+  .hero {
+    min-height: 620px;
+  }
+
+  .login-user-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navbar,
+  .login-navbar,
+  .top-header,
+  .hospital-header,
+  .admin-mobile-header,
+  .vol-topbar {
+    min-height: 62px !important;
+    height: auto !important;
+    padding: 10px 15px !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-buttons {
+    gap: 7px !important;
+  }
+
+  .nav-buttons .login-btn,
+  .nav-buttons .register-btn {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+    padding: 45px 18px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 9vw, 48px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero p {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .hero-buttons a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-visual {
+    width: 100% !important;
+    margin-top: 28px !important;
+  }
+
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main,
+  .admin-mobile-main {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .welcome-section,
+  .hospital-welcome,
+  .vol-welcome,
+  .vol-page-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px !important;
+  }
+
+  .top-service-buttons {
+    width: 100% !important;
+  }
+
+  .option-grid,
+  .quick-info-grid,
+  .service-grid,
+  .features-grid,
+  .users-grid,
+  .about-grid,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .vol-emergency-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-user-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-container,
+  .citizen-login-main,
+  .register-container {
+    padding: 20px 14px !important;
+  }
+
+  .login-user-card,
+  .citizen-login-card,
+  .admin-login-card,
+  .hospital-login-card,
+  .team-login-card,
+  .volunteer-login-card,
+  .register-card {
+    border-radius: 18px !important;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    width: auto !important;
+    transform: none !important;
+    border-radius: 18px !important;
+    padding: 7px !important;
+    z-index: 1200 !important;
+  }
+
+  .bottom-navigation button,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    min-height: 52px !important;
+    font-size: 10px !important;
+  }
+
+  .hospital-profile-text,
+  .vol-topbar-role {
+    display: none !important;
+  }
+
+  .page-title,
+  .page-header,
+  .page-header-card {
+    padding: 18px !important;
+  }
+
+  .section-title h1,
+  .section-title h2,
+  .section-heading h1,
+  .section-heading h2 {
+    font-size: 21px !important;
+  }
+
+  .feature-card,
+  .info-card,
+  .about-card,
+  .tech-card,
+  .process-card,
+  .user-card,
+  .summary-card,
+  .service-card,
+  .setting-card,
+  .option-card,
+  .quick-info-card,
+  .record-card,
+  .vol-panel,
+  .vol-person-card {
+    border-radius: 16px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .navbar .logo-text,
+  .login-logo-text {
+    font-size: 18px !important;
+  }
+
+  .nav-buttons .register-btn {
+    display: none !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 9px !important;
+  }
+
+  .summary-card,
+  .vol-status-card {
+    min-height: 92px !important;
+    padding: 11px !important;
+  }
+
+  .hero h1 {
+    font-size: 34px !important;
+  }
+}
+

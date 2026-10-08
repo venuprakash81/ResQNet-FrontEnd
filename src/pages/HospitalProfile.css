@@ -1,0 +1,3144 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.hospital-profile-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #f5f7fb;
+  color: #182235;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.profile-header {
+  width: 100%;
+  height: 72px;
+  padding: 0 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e4e8ef;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.profile-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.profile-back-button {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f1f5f9;
+  color: #263247;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s ease;
+}
+
+.profile-back-button:hover {
+  background: #e6ebf1;
+  transform: translateX(-2px);
+}
+
+.profile-header-icon {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 11px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+.profile-header-left h1 {
+  margin: 0;
+
+  color: #182235;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.profile-header-left p {
+  margin: 3px 0 0;
+
+  color: #7b8494;
+
+  font-size: 11px;
+}
+
+.profile-header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.profile-online {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #596579;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-online span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #16a34a;
+}
+
+.profile-logout {
+  border: none;
+  border-radius: 8px;
+
+  padding: 9px 16px;
+
+  background: #fff1f2;
+  color: #dc2626;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.profile-logout:hover {
+  background: #ffe4e6;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.profile-main {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0 auto;
+
+  padding: 30px 25px 60px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.profile-intro {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e6ed;
+  border-radius: 15px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.03);
+}
+
+.profile-large-icon {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+}
+
+.profile-intro h2 {
+  margin: 0;
+
+  font-size: 21px;
+  font-weight: 800;
+
+  color: #182235;
+}
+
+.profile-intro p {
+  margin: 5px 0 0;
+
+  color: #7b8494;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+
+.profile-success,
+.profile-error {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border-radius: 9px;
+
+  margin-bottom: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+.profile-error {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}
+
+.profile-success span,
+.profile-error span {
+  width: 21px;
+  height: 21px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.hospital-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* =====================================================
+   FORM SECTION
+===================================================== */
+
+.profile-form-section {
+  width: 100%;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e6ed;
+  border-radius: 14px;
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.02);
+}
+
+.form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 20px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #edf0f4;
+}
+
+.form-title-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.form-section-title h2 {
+  margin: 0;
+
+  color: #182235;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.form-section-title p {
+  margin: 4px 0 0;
+
+  color: #7b8494;
+
+  font-size: 10px;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.profile-form-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #344054;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.form-group label span {
+  margin-left: 3px;
+
+  color: #dc2626;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  border: 1px solid #dce2e9;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #182235;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.form-group input {
+  height: 40px;
+}
+
+.form-group select {
+  height: 40px;
+
+  cursor: pointer;
+}
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 90px;
+
+  line-height: 1.6;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a1a9b6;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.profile-form-actions {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding: 18px 0 0;
+}
+
+.profile-cancel-button,
+.profile-save-button {
+  min-width: 120px;
+
+  padding: 11px 18px;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.profile-cancel-button {
+  border: 1px solid #dce2e9;
+
+  background: #ffffff;
+
+  color: #596579;
+}
+
+.profile-cancel-button:hover {
+  background: #f8fafc;
+}
+
+.profile-save-button {
+  border: none;
+
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.profile-save-button:hover {
+  background: #1d4ed8;
+}
+
+.profile-save-button:disabled,
+.profile-cancel-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.hospital-profile-loading {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f7fb;
+
+  color: #667085;
+}
+
+.hospital-profile-loading p {
+  margin-top: 12px;
+
+  font-size: 12px;
+}
+
+.profile-spinner {
+  width: 37px;
+  height: 37px;
+
+  border: 4px solid #e5e7eb;
+
+  border-top-color: #2563eb;
+
+  border-radius: 50%;
+
+  animation: profileSpin 0.8s linear infinite;
+}
+
+@keyframes profileSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 750px) {
+
+  .profile-header {
+    padding: 0 18px;
+  }
+
+  .profile-online {
+    display: none;
+  }
+
+  .profile-main {
+    padding: 22px 18px 45px;
+  }
+
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 550px) {
+
+  .profile-header {
+    height: 65px;
+
+    padding: 0 13px;
+  }
+
+  .profile-header-left {
+    gap: 8px;
+  }
+
+  .profile-back-button {
+    width: 34px;
+    height: 34px;
+
+    font-size: 18px;
+  }
+
+  .profile-header-icon {
+    width: 38px;
+    height: 38px;
+
+    font-size: 19px;
+  }
+
+  .profile-header-left h1 {
+    font-size: 15px;
+  }
+
+  .profile-header-left p {
+    font-size: 9px;
+  }
+
+  .profile-logout {
+    padding: 8px 10px;
+
+    font-size: 10px;
+  }
+
+  .profile-main {
+    padding: 17px 12px 35px;
+  }
+
+  .profile-intro {
+    padding: 17px;
+
+    align-items: flex-start;
+  }
+
+  .profile-large-icon {
+    width: 47px;
+    height: 47px;
+
+    font-size: 22px;
+  }
+
+  .profile-intro h2 {
+    font-size: 17px;
+  }
+
+  .profile-intro p {
+    font-size: 10px;
+  }
+
+  .profile-form-section {
+    padding: 17px;
+  }
+
+  .form-section-title {
+    align-items: flex-start;
+  }
+
+  .form-title-icon {
+    width: 36px;
+    height: 36px;
+
+    font-size: 16px;
+  }
+
+  .form-section-title h2 {
+    font-size: 14px;
+  }
+
+  .form-section-title p {
+    font-size: 9px;
+  }
+
+  .profile-form-actions {
+    padding-top: 5px;
+  }
+
+  .profile-cancel-button,
+  .profile-save-button {
+    flex: 1;
+
+    min-width: 0;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+  .profile-header-left p {
+    display: none;
+  }
+
+  .profile-intro {
+    gap: 10px;
+  }
+
+  .profile-intro h2 {
+    font-size: 15px;
+  }
+
+  .profile-form-section {
+    padding: 14px;
+  }
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.hospital-profile-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #f5f7fb;
+  color: #182235;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.profile-header {
+  width: 100%;
+  height: 72px;
+  padding: 0 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e4e8ef;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.profile-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.profile-back-button {
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f1f5f9;
+  color: #263247;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s ease;
+}
+
+.profile-back-button:hover {
+  background: #e6ebf1;
+  transform: translateX(-2px);
+}
+
+.profile-header-icon {
+  width: 44px;
+  height: 44px;
+
+  border-radius: 11px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+.profile-header-left h1 {
+  margin: 0;
+
+  color: #182235;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.profile-header-left p {
+  margin: 3px 0 0;
+
+  color: #7b8494;
+
+  font-size: 11px;
+}
+
+.profile-header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.profile-online {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #596579;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-online span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #16a34a;
+}
+
+.profile-logout {
+  border: none;
+  border-radius: 8px;
+
+  padding: 9px 16px;
+
+  background: #fff1f2;
+  color: #dc2626;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.profile-logout:hover {
+  background: #ffe4e6;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.profile-main {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0 auto;
+
+  padding: 30px 25px 60px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.profile-intro {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e6ed;
+  border-radius: 15px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.03);
+}
+
+.profile-large-icon {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+}
+
+.profile-intro h2 {
+  margin: 0;
+
+  font-size: 21px;
+  font-weight: 800;
+
+  color: #182235;
+}
+
+.profile-intro p {
+  margin: 5px 0 0;
+
+  color: #7b8494;
+
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+
+.profile-success,
+.profile-error {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border-radius: 9px;
+
+  margin-bottom: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+.profile-error {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}
+
+.profile-success span,
+.profile-error span {
+  width: 21px;
+  height: 21px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.hospital-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* =====================================================
+   FORM SECTION
+===================================================== */
+
+.profile-form-section {
+  width: 100%;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e6ed;
+  border-radius: 14px;
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.02);
+}
+
+.form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 20px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #edf0f4;
+}
+
+.form-title-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.form-section-title h2 {
+  margin: 0;
+
+  color: #182235;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.form-section-title p {
+  margin: 4px 0 0;
+
+  color: #7b8494;
+
+  font-size: 10px;
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.profile-form-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #344054;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.form-group label span {
+  margin-left: 3px;
+
+  color: #dc2626;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  border: 1px solid #dce2e9;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #182235;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.form-group input {
+  height: 40px;
+}
+
+.form-group select {
+  height: 40px;
+
+  cursor: pointer;
+}
+
+.form-group textarea {
+  resize: vertical;
+
+  min-height: 90px;
+
+  line-height: 1.6;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a1a9b6;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.profile-form-actions {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding: 18px 0 0;
+}
+
+.profile-cancel-button,
+.profile-save-button {
+  min-width: 120px;
+
+  padding: 11px 18px;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.profile-cancel-button {
+  border: 1px solid #dce2e9;
+
+  background: #ffffff;
+
+  color: #596579;
+}
+
+.profile-cancel-button:hover {
+  background: #f8fafc;
+}
+
+.profile-save-button {
+  border: none;
+
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.profile-save-button:hover {
+  background: #1d4ed8;
+}
+
+.profile-save-button:disabled,
+.profile-cancel-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.hospital-profile-loading {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f7fb;
+
+  color: #667085;
+}
+
+.hospital-profile-loading p {
+  margin-top: 12px;
+
+  font-size: 12px;
+}
+
+.profile-spinner {
+  width: 37px;
+  height: 37px;
+
+  border: 4px solid #e5e7eb;
+
+  border-top-color: #2563eb;
+
+  border-radius: 50%;
+
+  animation: profileSpin 0.8s linear infinite;
+}
+
+@keyframes profileSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 750px) {
+
+  .profile-header {
+    padding: 0 18px;
+  }
+
+  .profile-online {
+    display: none;
+  }
+
+  .profile-main {
+    padding: 22px 18px 45px;
+  }
+
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 550px) {
+
+  .profile-header {
+    height: 65px;
+
+    padding: 0 13px;
+  }
+
+  .profile-header-left {
+    gap: 8px;
+  }
+
+  .profile-back-button {
+    width: 34px;
+    height: 34px;
+
+    font-size: 18px;
+  }
+
+  .profile-header-icon {
+    width: 38px;
+    height: 38px;
+
+    font-size: 19px;
+  }
+
+  .profile-header-left h1 {
+    font-size: 15px;
+  }
+
+  .profile-header-left p {
+    font-size: 9px;
+  }
+
+  .profile-logout {
+    padding: 8px 10px;
+
+    font-size: 10px;
+  }
+
+  .profile-main {
+    padding: 17px 12px 35px;
+  }
+
+  .profile-intro {
+    padding: 17px;
+
+    align-items: flex-start;
+  }
+
+  .profile-large-icon {
+    width: 47px;
+    height: 47px;
+
+    font-size: 22px;
+  }
+
+  .profile-intro h2 {
+    font-size: 17px;
+  }
+
+  .profile-intro p {
+    font-size: 10px;
+  }
+
+  .profile-form-section {
+    padding: 17px;
+  }
+
+  .form-section-title {
+    align-items: flex-start;
+  }
+
+  .form-title-icon {
+    width: 36px;
+    height: 36px;
+
+    font-size: 16px;
+  }
+
+  .form-section-title h2 {
+    font-size: 14px;
+  }
+
+  .form-section-title p {
+    font-size: 9px;
+  }
+
+  .profile-form-actions {
+    padding-top: 5px;
+  }
+
+  .profile-cancel-button,
+  .profile-save-button {
+    flex: 1;
+
+    min-width: 0;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+  .profile-header-left p {
+    display: none;
+  }
+
+  .profile-intro {
+    gap: 10px;
+  }
+
+  .profile-intro h2 {
+    font-size: 15px;
+  }
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.hospital-profile-page {
+  min-height: 100vh;
+  width: 100%;
+
+  background: #f5f7fb;
+  color: #182235;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.profile-header {
+  width: 100%;
+  height: 72px;
+
+  padding: 0 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e4e8ef;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 100;
+}
+
+.profile-header-left {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.profile-back-button {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f1f5f9;
+
+  color: #263247;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s ease;
+}
+
+.profile-back-button:hover {
+  background: #e6ebf1;
+
+  transform: translateX(-2px);
+}
+
+.profile-header-icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+}
+
+.profile-header-left h1 {
+  margin: 0;
+
+  color: #182235;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.profile-header-left p {
+  margin: 3px 0 0;
+
+  color: #7b8494;
+
+  font-size: 11px;
+}
+
+.profile-header-right {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+}
+
+.profile-online {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #596579;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-online span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #16a34a;
+}
+
+.profile-logout {
+  border: none;
+  border-radius: 8px;
+
+  padding: 9px 16px;
+
+  background: #fff1f2;
+
+  color: #dc2626;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.profile-logout:hover {
+  background: #ffe4e6;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.profile-main {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0 auto;
+
+  padding: 30px 25px 60px;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.profile-intro {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e6ed;
+
+  border-radius: 15px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.03);
+}
+
+.profile-large-icon {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+}
+
+.profile-intro h2 {
+  margin: 0;
+
+  color: #182235;
+
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.profile-intro p {
+  margin: 5px 0 0;
+
+  color: #7b8494;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   SUCCESS / ERROR
+===================================================== */
+
+.profile-success,
+.profile-error {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  margin-bottom: 18px;
+
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.profile-success {
+  background: #f0fdf4;
+
+  border: 1px solid #bbf7d0;
+
+  color: #15803d;
+}
+
+.profile-error {
+  background: #fff1f2;
+
+  border: 1px solid #fecdd3;
+
+  color: #be123c;
+}
+
+.profile-success span,
+.profile-error span {
+  width: 21px;
+  height: 21px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   PROFILE FORM
+===================================================== */
+
+.hospital-profile-form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
+/* =====================================================
+   FORM SECTION
+===================================================== */
+
+.profile-form-section,
+.password-section {
+  width: 100%;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e6ed;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.02);
+}
+
+.form-section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #edf0f4;
+}
+
+.form-title-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #edf3ff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.password-icon {
+  background: #fef3c7;
+}
+
+.form-section-title h2 {
+  margin: 0;
+
+  color: #182235;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.form-section-title p {
+  margin: 4px 0 0;
+
+  color: #7b8494;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   FORM GRID
+===================================================== */
+
+.profile-form-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  min-width: 0;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #344054;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.form-group label span {
+  margin-left: 3px;
+
+  color: #dc2626;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+
+  border: 1px solid #dce2e9;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #182235;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 11px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+  height: 40px;
+
+  padding: 0 12px;
+}
+
+.form-group textarea {
+  min-height: 90px;
+
+  padding: 11px 12px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a1a9b6;
+}
+
+.form-group small {
+  color: #98a2b3;
+
+  font-size: 9px;
+}
+
+
+/* =====================================================
+   PROFILE ACTIONS
+===================================================== */
+
+.profile-form-actions {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding-top: 4px;
+}
+
+.profile-cancel-button,
+.profile-save-button {
+  min-width: 120px;
+
+  padding: 11px 18px;
+
+  border-radius: 8px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.profile-cancel-button {
+  border: 1px solid #dce2e9;
+
+  background: #ffffff;
+
+  color: #596579;
+}
+
+.profile-cancel-button:hover {
+  background: #f8fafc;
+}
+
+.profile-save-button {
+  border: none;
+
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.profile-save-button:hover {
+  background: #1d4ed8;
+}
+
+.profile-cancel-button:disabled,
+.profile-save-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   PASSWORD SECTION
+===================================================== */
+
+.password-section {
+  margin-top: 18px;
+}
+
+.password-form {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 17px;
+}
+
+.password-actions {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #edf0f4;
+}
+
+.password-save-button {
+  min-width: 165px;
+}
+
+
+/* =====================================================
+   SECURITY INFORMATION
+===================================================== */
+
+.security-information {
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 13px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e6ed;
+
+  border-radius: 13px;
+}
+
+.security-info-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: #fef3c7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+}
+
+.security-information h3 {
+  margin: 0;
+
+  color: #263247;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.security-information p {
+  max-width: 850px;
+
+  margin: 6px 0 0;
+
+  color: #727d8d;
+
+  font-size: 10px;
+
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.hospital-profile-loading {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #f5f7fb;
+
+  color: #667085;
+}
+
+.hospital-profile-loading p {
+  margin: 12px 0 0;
+
+  font-size: 12px;
+}
+
+.profile-spinner {
+  width: 37px;
+  height: 37px;
+
+  border: 4px solid #e5e7eb;
+
+  border-top-color: #2563eb;
+
+  border-radius: 50%;
+
+  animation:
+    profileSpin 0.8s linear infinite;
+}
+
+@keyframes profileSpin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 850px) {
+
+  .profile-header {
+    padding: 0 20px;
+  }
+
+  .profile-main {
+    padding: 25px 20px 50px;
+  }
+
+  .password-form {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .profile-header {
+    height: 65px;
+
+    padding: 0 15px;
+  }
+
+  .profile-header-left {
+    gap: 9px;
+  }
+
+  .profile-back-button {
+    width: 34px;
+    height: 34px;
+
+    font-size: 18px;
+  }
+
+  .profile-header-icon {
+    width: 38px;
+    height: 38px;
+
+    font-size: 19px;
+  }
+
+  .profile-header-left h1 {
+    font-size: 15px;
+  }
+
+  .profile-header-left p {
+    font-size: 9px;
+  }
+
+  .profile-online {
+    display: none;
+  }
+
+  .profile-logout {
+    padding: 8px 11px;
+
+    font-size: 10px;
+  }
+
+  .profile-main {
+    padding: 20px 15px 40px;
+  }
+
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full-width {
+    grid-column: auto;
+  }
+
+  .password-form {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+  .profile-main {
+    padding: 15px 12px 35px;
+  }
+
+  .profile-intro {
+    padding: 17px;
+
+    align-items: flex-start;
+
+    gap: 11px;
+  }
+
+  .profile-large-icon {
+    width: 47px;
+    height: 47px;
+
+    font-size: 22px;
+  }
+
+  .profile-intro h2 {
+    font-size: 17px;
+  }
+
+  .profile-intro p {
+    font-size: 10px;
+  }
+
+  .profile-form-section,
+  .password-section {
+    padding: 17px;
+  }
+
+  .form-section-title {
+    align-items: flex-start;
+  }
+
+  .form-title-icon {
+    width: 36px;
+    height: 36px;
+
+    font-size: 16px;
+  }
+
+  .form-section-title h2 {
+    font-size: 14px;
+  }
+
+  .form-section-title p {
+    font-size: 9px;
+  }
+
+  .profile-form-actions,
+  .password-actions {
+    justify-content: stretch;
+  }
+
+  .profile-cancel-button,
+  .profile-save-button {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+  .security-information {
+    padding: 15px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+  .profile-header-left p {
+    display: none;
+  }
+
+  .profile-header-left h1 {
+    font-size: 14px;
+  }
+
+  .profile-intro h2 {
+    font-size: 15px;
+  }
+
+  .profile-form-section,
+  .password-section {
+    padding: 14px;
+  }
+
+  .profile-form-actions,
+  .password-actions {
+    flex-direction: column;
+  }
+
+  .profile-cancel-button,
+  .profile-save-button {
+    width: 100%;
+  }
+
+}
+
+  .profile-form-section {
+    padding: 14px;
+  }
+
+}
+
+}
+
+/* ================= RESQNET UI UPDATE ================= */
+
+/* =========================================================
+   ResQNet Unified UI Theme
+   Responsive laptop + mobile visual system
+   ========================================================= */
+
+:root {
+  --rq-blue: #1769e0;
+  --rq-blue-dark: #0f56bd;
+  --rq-blue-soft: #eaf2ff;
+  --rq-red: #ef3d45;
+  --rq-red-dark: #d92832;
+  --rq-green: #1f9d61;
+  --rq-orange: #f59e0b;
+  --rq-purple: #7c4dff;
+  --rq-bg: #f5f8fc;
+  --rq-surface: #ffffff;
+  --rq-text: #14213d;
+  --rq-muted: #718096;
+  --rq-border: #e5ebf3;
+  --rq-radius: 18px;
+  --rq-shadow: 0 8px 28px rgba(20, 55, 100, 0.07);
+  --rq-shadow-hover: 0 14px 34px rgba(20, 55, 100, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--rq-bg) !important;
+  color: var(--rq-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Arial, sans-serif !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Public/Home navigation ---------- */
+
+.navbar,
+.login-navbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, 0.18) !important;
+}
+
+.navbar .logo,
+.navbar .nav-links a,
+.login-navbar .login-logo,
+.login-navbar .login-back {
+  color: #fff !important;
+}
+
+.navbar .logo-icon,
+.login-logo-icon {
+  background: rgba(255,255,255,.16) !important;
+  border-radius: 12px !important;
+}
+
+.navbar .nav-links a:hover {
+  color: #fff !important;
+  opacity: .82;
+}
+
+.login-navbar .login-back {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+
+/* ---------- Dashboard top bars ---------- */
+
+.top-header,
+.hospital-header,
+.admin-mobile-header,
+.vol-topbar {
+  background: linear-gradient(135deg, #075bbf 0%, #1769e0 55%, #2385ee 100%) !important;
+  color: #fff !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 5px 22px rgba(23, 105, 224, .18) !important;
+}
+
+.top-header .brand,
+.top-header .brand h2,
+.top-header .brand span,
+.top-header .header-right,
+.top-header button,
+.hospital-header .hospital-brand h1,
+.hospital-header .hospital-brand p,
+.hospital-header .hospital-profile-text strong,
+.hospital-header .hospital-profile-text span,
+.admin-mobile-header .mobile-logo,
+.admin-mobile-header .back-button,
+.admin-mobile-header .header-actions button,
+.vol-topbar .vol-brand,
+.vol-topbar .vol-topbar-role {
+  color: #fff !important;
+}
+
+.brand-logo,
+.hospital-logo,
+.mobile-logo-icon,
+.vol-brand-mark {
+  background: rgba(255,255,255,.16) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.16) !important;
+}
+
+.hospital-profile-icon,
+.header-profile,
+.vol-top-avatar {
+  background: rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+
+/* ---------- Main surfaces ---------- */
+
+.citizen-app,
+.hospital-dashboard,
+.rescue-dashboard,
+.vol-dashboard,
+.admin-mobile-app {
+  background: var(--rq-bg) !important;
+}
+
+.main-content,
+.hospital-main,
+.dashboard-content,
+.vol-main,
+.admin-mobile-main {
+  color: var(--rq-text);
+}
+
+.welcome-section,
+.hospital-welcome,
+.welcome-card,
+.citizen-welcome-card,
+.page-header-card,
+.page-title,
+.page-header {
+  border-radius: var(--rq-radius);
+}
+
+.feature-card,
+.info-card,
+.about-card,
+.tech-card,
+.process-card,
+.user-card,
+.summary-card,
+.service-card,
+.setting-card,
+.option-card,
+.quick-info-card,
+.record-card,
+.vol-home-card,
+.vol-panel,
+.vol-person-card,
+.doctor-card,
+.hospital-card,
+.team-card,
+.recent-emergency,
+.empty-card,
+.medical-card,
+.booking-card,
+.notification-card,
+.profile-card,
+.emergency-item {
+  background: var(--rq-surface) !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: var(--rq-radius) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.feature-card:hover,
+.info-card:hover,
+.about-card:hover,
+.tech-card:hover,
+.process-card:hover,
+.user-card:hover,
+.summary-card:hover,
+.service-card:hover,
+.setting-card:hover,
+.option-card:hover,
+.quick-info-card:hover,
+.record-card:hover,
+.vol-home-card:hover,
+.vol-person-card:hover,
+.doctor-card:hover,
+.hospital-card:hover,
+.team-card:hover {
+  box-shadow: var(--rq-shadow-hover) !important;
+  transform: translateY(-2px);
+}
+
+/* ---------- Section headings ---------- */
+
+.section-title,
+.section-heading,
+.quick-info-title,
+.summary-heading,
+.vol-section-heading,
+.vol-panel-heading,
+.home-section-header {
+  color: var(--rq-text);
+}
+
+.section-title h1,
+.section-title h2,
+.section-heading h1,
+.section-heading h2,
+.quick-info-title h2,
+.summary-heading h2,
+.vol-section-heading h2,
+.vol-panel-heading h2,
+.home-section-header h2 {
+  color: var(--rq-text) !important;
+  font-weight: 800 !important;
+}
+
+.section-title p,
+.section-heading p,
+.quick-info-title p,
+.vol-section-heading p,
+.vol-panel-heading p {
+  color: var(--rq-muted) !important;
+}
+
+/* ---------- Home hero ---------- */
+
+.hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(35,133,238,.18), transparent 34%),
+    linear-gradient(180deg, #eef6ff 0%, #f8fbff 100%) !important;
+}
+
+.hero h1 {
+  color: var(--rq-text) !important;
+}
+
+.hero h1 span {
+  color: var(--rq-blue) !important;
+}
+
+.hero-badge {
+  background: var(--rq-blue-soft) !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d7e6ff !important;
+}
+
+.primary-btn,
+.register-btn,
+.citizen-login-button,
+.login-btn,
+.dispatch,
+.emergency-button,
+.complete-emergency-button,
+.report-emergency-btn,
+.save-btn,
+.profile-save-button {
+  background: linear-gradient(135deg, var(--rq-blue), #2385ee) !important;
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 7px 18px rgba(23,105,224,.18) !important;
+}
+
+.primary-btn:hover,
+.register-btn:hover,
+.citizen-login-button:hover,
+.login-btn:hover,
+.dispatch:hover,
+.save-btn:hover,
+.profile-save-button:hover {
+  background: linear-gradient(135deg, var(--rq-blue-dark), var(--rq-blue)) !important;
+  transform: translateY(-2px);
+}
+
+.secondary-btn {
+  background: #fff !important;
+  color: var(--rq-blue) !important;
+  border: 1px solid #d6e4f8 !important;
+  border-radius: 12px !important;
+}
+
+/* Emergency actions stay clearly red */
+
+.emergency-button,
+.report-emergency-btn,
+.emergency-cta,
+.sos-button {
+  background: linear-gradient(135deg, #ef3d45, #d92832) !important;
+  color: #fff !important;
+}
+
+/* ---------- Dashboard emergency banner ---------- */
+
+.emergency-card {
+  border: 0 !important;
+  box-shadow: 0 12px 32px rgba(239,61,69,.18) !important;
+  border-radius: 20px !important;
+}
+
+/* ---------- Icons ---------- */
+
+.card-icon,
+.section-icon,
+.page-title-icon,
+.page-header-icon,
+.setting-icon,
+.quick-info-icon,
+.detail-icon,
+.summary-icon,
+.form-title-icon,
+.step-icon,
+.vol-card-icon,
+.service-icon,
+.hospital-logo {
+  border-radius: 14px !important;
+}
+
+/* ---------- Search / forms ---------- */
+
+.search-box,
+.nearby-search-box,
+.login-input-wrapper,
+.input-group,
+.password-input-wrapper,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.login-form-group input,
+.login-form-group select,
+.login-form-group textarea,
+.form-control,
+.ai-input,
+.ai-chat-form textarea {
+  border-color: #dfe7f1 !important;
+}
+
+.search-box:focus-within,
+.nearby-search-box:focus-within,
+.login-input-wrapper:focus-within,
+.input-group:focus-within,
+.password-input-wrapper:focus-within {
+  border-color: #8ab7f5 !important;
+  box-shadow: 0 0 0 4px rgba(23,105,224,.09) !important;
+}
+
+input,
+select,
+textarea {
+  color: var(--rq-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa7b8;
+}
+
+/* ---------- Status pills ---------- */
+
+.status-badge,
+.booking-status,
+.emergency-status,
+.vol-status-pill {
+  border-radius: 999px !important;
+  font-weight: 750 !important;
+}
+
+.status-badge.pending,
+.booking-status.pending,
+.pending {
+  background: #fff3d6 !important;
+  color: #a16207 !important;
+}
+
+.status-badge.active,
+.booking-status.active,
+.active-status {
+  background: #eaf2ff !important;
+  color: var(--rq-blue) !important;
+}
+
+.status-badge.completed,
+.booking-status.completed,
+.completed {
+  background: #e9f8ef !important;
+  color: #16834e !important;
+}
+
+.status-badge.cancelled,
+.booking-status.cancelled,
+.cancelled {
+  background: #fff0f1 !important;
+  color: #c52d38 !important;
+}
+
+/* ---------- Maps ---------- */
+
+.map-container,
+.vol-map,
+.vol-leaflet-map,
+.map-modal {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--rq-border) !important;
+  box-shadow: var(--rq-shadow) !important;
+}
+
+.map-footer,
+.map-location-bar {
+  background: rgba(255,255,255,.96) !important;
+}
+
+/* ---------- Login / registration cards ---------- */
+
+.login-container,
+.citizen-login-main,
+.hospital-login-container,
+.team-login-container,
+.volunteer-login-container,
+.register-container {
+  background: transparent !important;
+}
+
+.login-user-card,
+.citizen-login-card,
+.admin-login-card,
+.hospital-login-card,
+.team-login-card,
+.volunteer-login-card,
+.register-card {
+  background: #fff !important;
+  border: 1px solid var(--rq-border) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 16px 45px rgba(20,55,100,.09) !important;
+}
+
+.login-user-card:hover {
+  border-color: #9fc4f7 !important;
+  box-shadow: 0 18px 45px rgba(23,105,224,.13) !important;
+}
+
+/* ---------- Chat ---------- */
+
+.hospital-chat-shell,
+.chat-container,
+.chat-page,
+.chat-window,
+.ai-chat-container,
+.ai-chat-panel {
+  border-radius: 20px !important;
+}
+
+.hospital-chat-topbar,
+.ai-chat-header {
+  background: linear-gradient(135deg, #075bbf, #2385ee) !important;
+  color: #fff !important;
+}
+
+/* ---------- Bottom navigation: phone style ---------- */
+
+.bottom-navigation,
+.hospital-bottom-nav,
+.vol-bottom-nav,
+.admin-bottom-nav,
+.bottom-nav {
+  background: rgba(255,255,255,.97) !important;
+  border-top: 1px solid #e2e8f1 !important;
+  box-shadow: 0 -8px 28px rgba(20,55,100,.08) !important;
+  backdrop-filter: blur(14px);
+}
+
+.bottom-navigation .active,
+.hospital-nav-item.active,
+.vol-nav-item.active,
+.nav-item.active,
+.admin-bottom-nav .active {
+  color: var(--rq-blue) !important;
+}
+
+.bottom-nav-icon,
+.hospital-nav-icon,
+.vol-nav-icon {
+  color: inherit;
+}
+
+/* ---------- Tables / lists ---------- */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+thead th {
+  background: #f4f7fb !important;
+  color: #526071 !important;
+}
+
+tbody tr:hover {
+  background: #f8fbff !important;
+}
+
+/* ---------- Alerts ---------- */
+
+.success-message,
+.success {
+  border-radius: 12px !important;
+  background: #eaf8f0 !important;
+  color: #167548 !important;
+}
+
+.error-message,
+.error {
+  border-radius: 12px !important;
+  background: #fff0f1 !important;
+  color: #bd2c38 !important;
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 769px) {
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main {
+    max-width: 1280px;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    position: fixed !important;
+    left: 50% !important;
+    bottom: 18px !important;
+    transform: translateX(-50%) !important;
+    width: min(560px, calc(100% - 40px)) !important;
+    border: 1px solid #dfe7f1 !important;
+    border-radius: 20px !important;
+    padding: 8px !important;
+    z-index: 1000 !important;
+  }
+
+  .bottom-navigation .nav-item,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    border-radius: 14px !important;
+  }
+
+  .hero {
+    min-height: 620px;
+  }
+
+  .login-user-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .navbar,
+  .login-navbar,
+  .top-header,
+  .hospital-header,
+  .admin-mobile-header,
+  .vol-topbar {
+    min-height: 62px !important;
+    height: auto !important;
+    padding: 10px 15px !important;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
+  .nav-buttons {
+    gap: 7px !important;
+  }
+
+  .nav-buttons .login-btn,
+  .nav-buttons .register-btn {
+    padding: 8px 10px !important;
+    font-size: 11px !important;
+  }
+
+  .hero {
+    min-height: auto !important;
+    padding: 45px 18px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 9vw, 48px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero p {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .hero-buttons a {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-visual {
+    width: 100% !important;
+    margin-top: 28px !important;
+  }
+
+  .main-content,
+  .hospital-main,
+  .dashboard-content,
+  .vol-main,
+  .admin-mobile-main {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .welcome-section,
+  .hospital-welcome,
+  .vol-welcome,
+  .vol-page-header {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px !important;
+  }
+
+  .top-service-buttons {
+    width: 100% !important;
+  }
+
+  .option-grid,
+  .quick-info-grid,
+  .service-grid,
+  .features-grid,
+  .users-grid,
+  .about-grid,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .vol-emergency-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-user-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-container,
+  .citizen-login-main,
+  .register-container {
+    padding: 20px 14px !important;
+  }
+
+  .login-user-card,
+  .citizen-login-card,
+  .admin-login-card,
+  .hospital-login-card,
+  .team-login-card,
+  .volunteer-login-card,
+  .register-card {
+    border-radius: 18px !important;
+  }
+
+  .bottom-navigation,
+  .hospital-bottom-nav,
+  .vol-bottom-nav,
+  .admin-bottom-nav,
+  .bottom-nav {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    width: auto !important;
+    transform: none !important;
+    border-radius: 18px !important;
+    padding: 7px !important;
+    z-index: 1200 !important;
+  }
+
+  .bottom-navigation button,
+  .hospital-nav-item,
+  .vol-nav-item,
+  .admin-bottom-nav button,
+  .bottom-nav .nav-item {
+    min-height: 52px !important;
+    font-size: 10px !important;
+  }
+
+  .hospital-profile-text,
+  .vol-topbar-role {
+    display: none !important;
+  }
+
+  .page-title,
+  .page-header,
+  .page-header-card {
+    padding: 18px !important;
+  }
+
+  .section-title h1,
+  .section-title h2,
+  .section-heading h1,
+  .section-heading h2 {
+    font-size: 21px !important;
+  }
+
+  .feature-card,
+  .info-card,
+  .about-card,
+  .tech-card,
+  .process-card,
+  .user-card,
+  .summary-card,
+  .service-card,
+  .setting-card,
+  .option-card,
+  .quick-info-card,
+  .record-card,
+  .vol-panel,
+  .vol-person-card {
+    border-radius: 16px !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .navbar .logo-text,
+  .login-logo-text {
+    font-size: 18px !important;
+  }
+
+  .nav-buttons .register-btn {
+    display: none !important;
+  }
+
+  .summary-grid,
+  .vol-status-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 9px !important;
+  }
+
+  .summary-card,
+  .vol-status-card {
+    min-height: 92px !important;
+    padding: 11px !important;
+  }
+
+  .hero h1 {
+    font-size: 34px !important;
+  }
+}
+
