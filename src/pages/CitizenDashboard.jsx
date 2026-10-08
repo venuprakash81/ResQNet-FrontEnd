@@ -33,8 +33,8 @@ const PAGE_ROUTES = {
   privacy: "/citizen/privacy",
   notifications: "/citizen/notifications",
   locationSettings: "/citizen/location-settings",
-  language: "/citizen/dashbaord",
-  appearance: "/citizen/appearance",
+  language: "/citizen/dashboard",
+  appearance: "/citizen/dashboard",
   emergencyPreferences: "/citizen/dashboard",
   about: "/about",
 };
