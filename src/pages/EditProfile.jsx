@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./EditProfile.css";
 
-const API = "http://localhost:8081/api/citizens";
+const API = "https://resqnet-backend-1.onrender.com/api/citizens";
 
 function EditProfile() {
   const navigate = useNavigate();
