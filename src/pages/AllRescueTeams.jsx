@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import "./AllRescueTeams.css";
 
-const API = "http://localhost:8081/api/teams";
+const API = "https://resqnet-backend-1.onrender.com/api/teams";
 
 export default function AllRescueTeams() {
   const [teams, setTeams] = useState([]);
