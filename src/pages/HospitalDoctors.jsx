@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HospitalDoctors.css";
 
-const API_URL = "http://localhost:8081/api/hospitals";
+const API_URL = "https://resqnet-backend-1.onrender.com/api/hospitals";
 
 function HospitalDoctors() {
   const navigate = useNavigate();
