@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "./BookBeds.css";
 
-const API = "http://localhost:8081/api";
+const API = "https://resqnet-backend-1.onrender.com/api";
 
 const emptyForm = {
   patientName: "",
