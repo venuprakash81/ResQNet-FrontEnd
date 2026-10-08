@@ -30,7 +30,6 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
 });
 
-
 /* =====================================================
    DEFAULT LOCATION
 ===================================================== */
@@ -39,7 +38,6 @@ const DEFAULT_LOCATION = {
   lat: 17.3850,
   lng: 78.4867,
 };
-
 
 /* =====================================================
    MAP MARKER
@@ -70,15 +68,12 @@ function LocationMarker({
   ) : null;
 }
 
-
 /* =====================================================
    COMPONENT
 ===================================================== */
 
 const ReportEmergency = () => {
-
   const navigate = useNavigate();
-
 
   /* ===================================================
      FORM
@@ -92,22 +87,12 @@ const ReportEmergency = () => {
     contactNumber: "",
   });
 
-
   /* ===================================================
      MAP
   =================================================== */
 
   const [position, setPosition] =
     useState(DEFAULT_LOCATION);
-
-
-  /* ===================================================
-     IMAGE
-  =================================================== */
-
-  const [image, setImage] =
-    useState(null);
-
 
   /* ===================================================
      STATUS
@@ -122,7 +107,6 @@ const ReportEmergency = () => {
   const [messageType, setMessageType] =
     useState("");
 
-
   /* ===================================================
      SUCCESS MODAL
   =================================================== */
@@ -133,13 +117,11 @@ const ReportEmergency = () => {
   const [submittedData, setSubmittedData] =
     useState(null);
 
-
   /* ===================================================
      HANDLE INPUT
   =================================================== */
 
   const handleChange = (event) => {
-
     const {
       name,
       value,
@@ -151,22 +133,6 @@ const ReportEmergency = () => {
     }));
   };
 
-
-  /* ===================================================
-     IMAGE
-  =================================================== */
-
-  const handleImageChange = (event) => {
-
-    const file =
-      event.target.files[0];
-
-    if (file) {
-      setImage(file);
-    }
-  };
-
-
   /* ===================================================
      MAP LOCATION
   =================================================== */
@@ -174,7 +140,6 @@ const ReportEmergency = () => {
   const handleMapLocation = (
     newPosition
   ) => {
-
     setPosition(newPosition);
 
     setFormData((previous) => ({
@@ -186,15 +151,12 @@ const ReportEmergency = () => {
     }));
   };
 
-
   /* ===================================================
      CURRENT LOCATION
   =================================================== */
 
   const getCurrentLocation = () => {
-
     if (!navigator.geolocation) {
-
       setMessage(
         "Location is not supported by your browser."
       );
@@ -204,33 +166,25 @@ const ReportEmergency = () => {
       return;
     }
 
-
     setMessage(
       "Getting your current location..."
     );
 
     setMessageType("info");
 
-
     navigator.geolocation.getCurrentPosition(
-
       (location) => {
-
         const newPosition = {
-
           lat:
             location.coords.latitude,
 
           lng:
             location.coords.longitude,
-
         };
-
 
         setPosition(
           newPosition
         );
-
 
         setFormData((previous) => ({
           ...previous,
@@ -240,7 +194,6 @@ const ReportEmergency = () => {
             `${newPosition.lng.toFixed(6)}`,
         }));
 
-
         setMessage(
           "Current location selected."
         );
@@ -248,12 +201,9 @@ const ReportEmergency = () => {
         setMessageType(
           "success"
         );
-
       },
 
-
       () => {
-
         setMessage(
           "Unable to get your current location."
         );
@@ -261,7 +211,6 @@ const ReportEmergency = () => {
         setMessageType(
           "error"
         );
-
       },
 
       {
@@ -269,19 +218,15 @@ const ReportEmergency = () => {
         timeout: 10000,
         maximumAge: 0,
       }
-
     );
   };
-
 
   /* ===================================================
      GET CITIZEN EMAIL
   =================================================== */
 
   const getCitizenEmail = () => {
-
     try {
-
       const citizen = JSON.parse(
         localStorage.getItem("citizen") || "{}"
       );
@@ -291,9 +236,7 @@ const ReportEmergency = () => {
         localStorage.getItem("citizenEmail") ||
         ""
       );
-
     } catch (error) {
-
       console.error(
         "Citizen data error:",
         error
@@ -307,26 +250,21 @@ const ReportEmergency = () => {
     }
   };
 
-
   /* ===================================================
      SUBMIT
   =================================================== */
 
   const handleSubmit = async (event) => {
-
     event.preventDefault();
-
 
     setMessage("");
     setMessageType("");
-
 
     /* ================================================
        VALIDATION
     ================================================ */
 
     if (!formData.emergencyType) {
-
       setMessage(
         "Please select an emergency type."
       );
@@ -336,9 +274,7 @@ const ReportEmergency = () => {
       return;
     }
 
-
     if (!formData.severity) {
-
       setMessage(
         "Please select the severity."
       );
@@ -348,9 +284,7 @@ const ReportEmergency = () => {
       return;
     }
 
-
     if (!position) {
-
       setMessage(
         "Please select the emergency location."
       );
@@ -360,7 +294,6 @@ const ReportEmergency = () => {
       return;
     }
 
-
     /* ================================================
        GET LOGGED-IN CITIZEN EMAIL
     ================================================ */
@@ -368,9 +301,7 @@ const ReportEmergency = () => {
     const citizenEmail =
       getCitizenEmail();
 
-
     if (!citizenEmail) {
-
       setMessage(
         "Citizen login information not found. Please login again."
       );
@@ -380,12 +311,9 @@ const ReportEmergency = () => {
       return;
     }
 
-
     setLoading(true);
 
-
     try {
-
       /* ==============================================
          FORM DATA
       ============================================== */
@@ -393,9 +321,7 @@ const ReportEmergency = () => {
       const data =
         new FormData();
 
-
       /* ==============================================
-         IMPORTANT:
          SEND CITIZEN EMAIL
       ============================================== */
 
@@ -404,61 +330,40 @@ const ReportEmergency = () => {
         citizenEmail
       );
 
-
       data.append(
         "emergencyType",
         formData.emergencyType || "N/A"
       );
-
 
       data.append(
         "severity",
         formData.severity || "N/A"
       );
 
-
       data.append(
         "location",
         formData.location || "N/A"
       );
-
 
       data.append(
         "latitude",
         position?.lat ?? "0"
       );
 
-
       data.append(
         "longitude",
         position?.lng ?? "0"
       );
-
 
       data.append(
         "description",
         formData.description || "N/A"
       );
 
-
       data.append(
         "contactNumber",
         formData.contactNumber || "N/A"
       );
-
-
-      /* ==============================================
-         IMAGE
-      ============================================== */
-
-      if (image) {
-
-        data.append(
-          "image",
-          image
-        );
-      }
-
 
       /* ==============================================
          SEND TO BACKEND
@@ -473,13 +378,11 @@ const ReportEmergency = () => {
           }
         );
 
-
       /* ==============================================
          HANDLE ERROR
       ============================================== */
 
       if (!response.ok) {
-
         const errorText =
           await response.text();
 
@@ -489,7 +392,6 @@ const ReportEmergency = () => {
         );
       }
 
-
       /* ==============================================
          READ RESPONSE
       ============================================== */
@@ -497,19 +399,16 @@ const ReportEmergency = () => {
       const result =
         await response.json();
 
-
       console.log(
         "Emergency submitted:",
         result
       );
-
 
       /* ==============================================
          PREPARE SUCCESS DATA
       ============================================== */
 
       const successData = {
-
         id:
           result.id ||
           "N/A",
@@ -544,16 +443,6 @@ const ReportEmergency = () => {
           formData.contactNumber ||
           "N/A",
 
-        image:
-          image
-            ? URL.createObjectURL(image)
-            : "/images/default-emergency.jpg",
-
-        imageName:
-          image
-            ? image.name
-            : "Default Emergency Image",
-
         status:
           result.status ||
           "PENDING",
@@ -561,14 +450,11 @@ const ReportEmergency = () => {
         createdAt:
           result.createdAt ||
           new Date().toLocaleString(),
-
       };
-
 
       setSubmittedData(
         successData
       );
-
 
       /* ==============================================
          SHOW SUCCESS WINDOW
@@ -578,7 +464,6 @@ const ReportEmergency = () => {
         true
       );
 
-
       setMessage(
         "Emergency reported successfully."
       );
@@ -587,45 +472,25 @@ const ReportEmergency = () => {
         "success"
       );
 
-
       /* ==============================================
          CLEAR FORM
       ============================================== */
 
       setFormData({
-
         emergencyType: "",
         severity: "",
         location: "",
         description: "",
         contactNumber: "",
-
       });
-
 
       setPosition(null);
 
-      setImage(null);
-
-
-      const imageInput =
-        document.getElementById(
-          "emergencyImage"
-        );
-
-
-      if (imageInput) {
-        imageInput.value = "";
-      }
-
-
     } catch (error) {
-
       console.error(
         "Emergency error:",
         error
       );
-
 
       setMessage(
         "Unable to submit emergency. Please try again."
@@ -634,35 +499,25 @@ const ReportEmergency = () => {
       setMessageType(
         "error"
       );
-
     } finally {
-
       setLoading(false);
-
     }
-
   };
-
 
   /* ===================================================
      CLOSE SUCCESS MODAL
   =================================================== */
 
   const closeSuccessModal = () => {
-
     setShowSuccessModal(false);
-
   };
-
 
   /* ===================================================
      UI
   =================================================== */
 
   return (
-
     <div className="report-emergency-page">
-
 
       {/* =============================================
           HEADER
@@ -684,7 +539,6 @@ const ReportEmergency = () => {
           </div>
 
           <div>
-
             <h2>
               ResQNet
             </h2>
@@ -692,11 +546,9 @@ const ReportEmergency = () => {
             <span>
               Emergency Response Network
             </span>
-
           </div>
 
         </div>
-
 
         <button
           className="back-dashboard-btn"
@@ -711,13 +563,11 @@ const ReportEmergency = () => {
 
       </header>
 
-
       {/* =============================================
           MAIN
       ============================================== */}
 
       <main className="report-container">
-
 
         {/* TITLE */}
 
@@ -728,7 +578,6 @@ const ReportEmergency = () => {
           </div>
 
           <div>
-
             <h1>
               Report an Emergency
             </h1>
@@ -737,11 +586,9 @@ const ReportEmergency = () => {
               Provide emergency information
               and select the location on the map.
             </p>
-
           </div>
 
         </div>
-
 
         {/* WARNING */}
 
@@ -758,7 +605,6 @@ const ReportEmergency = () => {
 
         </div>
 
-
         {/* ==========================================
             FORM
         =========================================== */}
@@ -767,7 +613,6 @@ const ReportEmergency = () => {
           className="emergency-form"
           onSubmit={handleSubmit}
         >
-
 
           {/* ==========================================
               EMERGENCY INFORMATION
@@ -782,7 +627,6 @@ const ReportEmergency = () => {
               </span>
 
               <div>
-
                 <h3>
                   Emergency Information
                 </h3>
@@ -790,14 +634,11 @@ const ReportEmergency = () => {
                 <p>
                   Tell us what happened.
                 </p>
-
               </div>
 
             </div>
 
-
             <div className="form-grid">
-
 
               {/* TYPE */}
 
@@ -807,7 +648,6 @@ const ReportEmergency = () => {
                   Emergency Type
                   <span>*</span>
                 </label>
-
 
                 <select
                   name="emergencyType"
@@ -859,7 +699,6 @@ const ReportEmergency = () => {
 
               </div>
 
-
               {/* SEVERITY */}
 
               <div className="form-group">
@@ -868,7 +707,6 @@ const ReportEmergency = () => {
                   Severity
                   <span>*</span>
                 </label>
-
 
                 <select
                   name="severity"
@@ -908,7 +746,6 @@ const ReportEmergency = () => {
 
           </div>
 
-
           {/* ==========================================
               LOCATION
           =========================================== */}
@@ -922,7 +759,6 @@ const ReportEmergency = () => {
               </span>
 
               <div>
-
                 <h3>
                   Emergency Location
                 </h3>
@@ -931,11 +767,9 @@ const ReportEmergency = () => {
                   Click on the map to select the
                   emergency location.
                 </p>
-
               </div>
 
             </div>
-
 
             <div className="map-wrapper">
 
@@ -954,7 +788,6 @@ const ReportEmergency = () => {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
-
                 <LocationMarker
                   position={position}
                   setPosition={
@@ -966,7 +799,6 @@ const ReportEmergency = () => {
 
             </div>
 
-
             <button
               type="button"
               className="current-location-btn"
@@ -977,13 +809,11 @@ const ReportEmergency = () => {
               📍 Use My Current Location
             </button>
 
-
             <div className="selected-location">
 
               <div className="location-title">
                 📌 Selected Location
               </div>
-
 
               {position ? (
 
@@ -1000,7 +830,6 @@ const ReportEmergency = () => {
                     </span>
 
                   </div>
-
 
                   <div>
 
@@ -1028,7 +857,6 @@ const ReportEmergency = () => {
 
           </div>
 
-
           {/* ==========================================
               DESCRIPTION
           =========================================== */}
@@ -1042,7 +870,6 @@ const ReportEmergency = () => {
               </span>
 
               <div>
-
                 <h3>
                   Emergency Details
                 </h3>
@@ -1050,18 +877,15 @@ const ReportEmergency = () => {
                 <p>
                   Describe the situation.
                 </p>
-
               </div>
 
             </div>
-
 
             <div className="form-group">
 
               <label>
                 Description
               </label>
-
 
               <textarea
                 name="description"
@@ -1079,7 +903,6 @@ const ReportEmergency = () => {
 
           </div>
 
-
           {/* ==========================================
               CONTACT
           =========================================== */}
@@ -1093,7 +916,6 @@ const ReportEmergency = () => {
               </span>
 
               <div>
-
                 <h3>
                   Contact Information
                 </h3>
@@ -1101,18 +923,15 @@ const ReportEmergency = () => {
                 <p>
                   Contact number for responders.
                 </p>
-
               </div>
 
             </div>
-
 
             <div className="form-group">
 
               <label>
                 Contact Number
               </label>
-
 
               <input
                 type="tel"
@@ -1130,54 +949,6 @@ const ReportEmergency = () => {
             </div>
 
           </div>
-
-
-          {/* ==========================================
-              IMAGE
-          =========================================== */}
-<div className="form-section">
-
-            <div className="section-heading">
-
-             
-
-
-              <input
-                id="emergencyImage"
-                type="file"
-                accept="image/*"
-                onChange={
-                  handleImageChange
-                }
-              />
-
-
-              {image && (
-
-                <p className="selected-file">
-
-                  Selected:
-                  {" "}
-                  {image.name}
-
-                </p>
-
-              )}
-
-
-              {!image && (
-
-                <p className="default-image-text">
-
-                 
-                </p>
-
-              )}
-
-            </div>
-
-          </div>
-
 
           {/* MESSAGE */}
 
@@ -1197,9 +968,9 @@ const ReportEmergency = () => {
 
           )}
 
+          {/* ACTIONS */}
 
-   
- <div className="form-actions">
+          <div className="form-actions">
 
             <button
               type="button"
@@ -1213,26 +984,21 @@ const ReportEmergency = () => {
               Cancel
             </button>
 
-
             <button
               type="submit"
               className="submit-emergency-btn"
               disabled={loading}
             >
-
               {loading
                 ? "Submitting..."
                 : "🚨 Report Emergency"}
-
             </button>
 
           </div>
-       
 
         </form>
 
       </main>
-
 
       {/* =============================================
           SUCCESS MODAL
@@ -1244,7 +1010,6 @@ const ReportEmergency = () => {
         <div className="success-modal-overlay">
 
           <div className="success-modal">
-
 
             {/* MODAL HEADER */}
 
@@ -1269,7 +1034,6 @@ const ReportEmergency = () => {
 
             </div>
 
-
             {/* DETAILS */}
 
             <div className="submitted-details">
@@ -1286,7 +1050,6 @@ const ReportEmergency = () => {
 
               </div>
 
-
               <div className="submitted-row">
 
                 <span>
@@ -1298,7 +1061,6 @@ const ReportEmergency = () => {
                 </strong>
 
               </div>
-
 
               <div className="submitted-row">
 
@@ -1312,7 +1074,6 @@ const ReportEmergency = () => {
 
               </div>
 
-
               <div className="submitted-row">
 
                 <span>
@@ -1324,7 +1085,6 @@ const ReportEmergency = () => {
                 </strong>
 
               </div>
-
 
               <div className="submitted-row">
 
@@ -1338,7 +1098,6 @@ const ReportEmergency = () => {
 
               </div>
 
-
               <div className="submitted-row">
 
                 <span>
@@ -1350,7 +1109,6 @@ const ReportEmergency = () => {
                 </strong>
 
               </div>
-
 
               <div className="submitted-row">
 
@@ -1364,7 +1122,6 @@ const ReportEmergency = () => {
 
               </div>
 
-
               <div className="submitted-row">
 
                 <span>
@@ -1376,7 +1133,6 @@ const ReportEmergency = () => {
                 </strong>
 
               </div>
-
 
               <div className="submitted-row">
 
@@ -1390,31 +1146,7 @@ const ReportEmergency = () => {
 
               </div>
 
-
-              <div className="submitted-image-section">
-
-                <span>
-                  Image
-                </span>
-
-
-                <img
-                  src={
-                    submittedData.image
-                  }
-                  alt="Emergency"
-                  className="submitted-image"
-                />
-
-
-                <small>
-                  {submittedData.imageName}
-                </small>
-
-              </div>
-
             </div>
-
 
             {/* BUTTONS */}
 
@@ -1428,7 +1160,6 @@ const ReportEmergency = () => {
               >
                 Close
               </button>
-
 
               <button
                 className="modal-dashboard-btn"
@@ -1452,6 +1183,5 @@ const ReportEmergency = () => {
     </div>
   );
 };
-
 
 export default ReportEmergency;
