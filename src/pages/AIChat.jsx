@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AIChat.css";
 
-const API_URL = "http://localhost:8000/ask";
+const API_URL = "https://resqnet-ai-as65.onrender.com/ask";
 
 const AIChat = () => {
   const [message, setMessage] = useState("");
