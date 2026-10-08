@@ -25,7 +25,7 @@ function HospitalLogin() {
 
     try {
       const response = await fetch(
-        "http://localhost:8081/api/hospitals/login",
+        "https://resqnet-backend-1.onrender.com/api/hospitals/login",
         {
           method: "POST",
           headers: {
