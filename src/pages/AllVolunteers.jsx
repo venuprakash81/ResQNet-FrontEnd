@@ -13,16 +13,16 @@ import {
 } from "lucide-react";
 import "./AllVolunteers.css";
 
-const API_BASE = "https://resqnet-backend-1.onrender.com/api";
-
-function AllVolunteers() {
+const API_BASE = "https://resqnet-backend-1.onrender.com/
   const [volunteers, setVolunteers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
+  useEffect(() => {api";
+
+function AllVolunteers() {
     fetchVolunteers();
   }, []);
 const fetchVolunteers = async () => {
@@ -31,7 +31,9 @@ const fetchVolunteers = async () => {
 
   try {
     const response = await fetch(
-      "http://localhost:8081/api/volunteers"
+      "https://resqnet-backend-1.onrender.com/api"
+
+
     );
 
     if (!response.ok) {
