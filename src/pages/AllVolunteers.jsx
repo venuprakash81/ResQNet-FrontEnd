@@ -14,15 +14,15 @@ import {
 import "./AllVolunteers.css";
 
 const API_BASE = "https://resqnet-backend-1.onrender.com/api";
+
+function AllVolunteers() {
   const [volunteers, setVolunteers] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  useEffect(() => {api";
-
-function AllVolunteers() {
+  useEffect(() => {
     fetchVolunteers();
   }, []);
 const fetchVolunteers = async () => {
@@ -32,8 +32,6 @@ const fetchVolunteers = async () => {
   try {
     const response = await fetch(
       "https://resqnet-backend-1.onrender.com/api/volunteers"
-
-
     );
 
     if (!response.ok) {
