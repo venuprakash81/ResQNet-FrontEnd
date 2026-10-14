@@ -1,3 +1,4 @@
+
 import React, { useCallback, useEffect, useState } from "react";
 import {
   MapContainer,
@@ -58,12 +59,13 @@ function getCitizenDetails() {
   let citizen = {};
 
   try {
-    const savedCitizen = localStorage.getItem("citizen");
-    if (savedCitizen) {
-      citizen = JSON.parse(savedCitizen) || {};
+    const saved = localStorage.getItem("citizen");
+
+    if (saved) {
+      citizen = JSON.parse(saved) || {};
     }
   } catch (error) {
-    console.error("Could not read citizen details:", error);
+    console.error("Error reading citizen data:", error);
   }
 
   return {
@@ -115,24 +117,33 @@ function calculateDistance(point1, point2) {
 function getCoordinates(booking, type) {
   const isPickup = type === "pickup";
 
-  const lat = isPickup
-    ? booking.pickupLatitude
+  const latitude = isPickup
+    ? booking.fromLatitude ?? booking.pickupLatitude
     : booking.destinationLatitude;
 
-  const lng = isPickup
-    ? booking.pickupLongitude
+  const longitude = isPickup
+    ? booking.fromLongitude ?? booking.pickupLongitude
     : booking.destinationLongitude;
 
-  if (lat == null || lng == null) return null;
-
-  const latitude = Number(lat);
-  const longitude = Number(lng);
-
-  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+  if (latitude == null || longitude == null) {
     return null;
   }
 
-  return [latitude, longitude];
+  const lat = Number(latitude);
+  const lng = Number(longitude);
+
+  if (
+    !Number.isFinite(lat) ||
+    !Number.isFinite(lng) ||
+    lat < -90 ||
+    lat > 90 ||
+    lng < -180 ||
+    lng > 180
+  ) {
+    return null;
+  }
+
+  return [lat, lng];
 }
 
 function MapClickHandler({ onMapClick }) {
@@ -157,6 +168,26 @@ function MapCenterUpdater({ center }) {
   return null;
 }
 
+async function getApiError(response) {
+  const raw = await response.text();
+
+  try {
+    const data = JSON.parse(raw);
+
+    if (typeof data === "string") {
+      return data;
+    }
+
+    return (
+      data.message ||
+      data.error ||
+      `Request failed with status ${response.status}`
+    );
+  } catch {
+    return raw || `Request failed with status ${response.status}`;
+  }
+}
+
 function VolunteerVehicleBooking() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -176,8 +207,8 @@ function VolunteerVehicleBooking() {
   const [mapCenter, setMapCenter] = useState(defaultCenter);
   const [mapSelection, setMapSelection] = useState("pickup");
 
-  const citizen = getCitizenDetails();
-  const email = citizen.email.trim();
+  const [citizen] = useState(getCitizenDetails);
+  const email = String(citizen.email || "").trim();
 
   const showNotice = useCallback((type, message) => {
     setNotice({ type, message });
@@ -187,10 +218,12 @@ function VolunteerVehicleBooking() {
     if (!email) {
       setBookings([]);
       setLoading(false);
+
       showNotice(
         "error",
         "Citizen email not found. Please sign in again."
       );
+
       return;
     }
 
@@ -204,12 +237,11 @@ function VolunteerVehicleBooking() {
       );
 
       if (!response.ok) {
-        throw new Error(
-          `Could not load bookings. Server returned ${response.status}.`
-        );
+        throw new Error(await getApiError(response));
       }
 
       const data = await response.json();
+
       setBookings(Array.isArray(data) ? data : []);
     } catch (error) {
       showNotice(
@@ -226,9 +258,11 @@ function VolunteerVehicleBooking() {
   }, [fetchBookings]);
 
   useEffect(() => {
+    const distance = calculateDistance(pickup, destination);
+
     setForm((previous) => ({
       ...previous,
-      distance: calculateDistance(pickup, destination),
+      distance,
     }));
   }, [pickup, destination]);
 
@@ -247,11 +281,13 @@ function VolunteerVehicleBooking() {
       setDestination(destinationPoint);
 
       setForm({
-        citizenName: booking.citizenName || citizen.name,
+        citizenName:
+          booking.citizenName || citizen.name || "",
         mobile:
           booking.mobileNumber ||
           booking.mobile ||
-          citizen.mobile,
+          citizen.mobile ||
+          "",
         pickupLocation:
           booking.fromAddress ||
           booking.pickupLocation ||
@@ -268,7 +304,6 @@ function VolunteerVehicleBooking() {
         pickupPoint || destinationPoint || defaultCenter
       );
 
-      // If pickup already exists, allow destination selection next.
       setMapSelection(
         pickupPoint && !destinationPoint
           ? "destination"
@@ -277,8 +312,8 @@ function VolunteerVehicleBooking() {
     } else {
       setForm({
         ...initialForm,
-        citizenName: citizen.name,
-        mobile: citizen.mobile,
+        citizenName: citizen.name || "",
+        mobile: citizen.mobile || "",
       });
 
       setPickup(null);
@@ -311,7 +346,6 @@ function VolunteerVehicleBooking() {
     }));
   };
 
-  // First click sets pickup. The next click sets destination.
   const handleMapClick = (point) => {
     const locationText = `Location (${point[0].toFixed(
       5
@@ -325,7 +359,7 @@ function VolunteerVehicleBooking() {
         pickupLocation: locationText,
       }));
 
-      // Automatically switch to destination.
+      // Automatically switch to destination mode.
       setMapSelection("destination");
     } else {
       setDestination(point);
@@ -340,6 +374,8 @@ function VolunteerVehicleBooking() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (saving) return;
+
     if (!email) {
       showNotice("error", "Please sign in before booking.");
       return;
@@ -353,22 +389,40 @@ function VolunteerVehicleBooking() {
       return;
     }
 
+    const citizenName = form.citizenName.trim();
+    const mobileNumber = form.mobile.trim();
+    const fromAddress = form.pickupLocation.trim();
+    const destinationAddress = form.destination.trim();
+
     if (
-      !form.citizenName.trim() ||
-      !form.mobile.trim() ||
-      !form.pickupLocation.trim() ||
-      !form.destination.trim()
+      !citizenName ||
+      !mobileNumber ||
+      !fromAddress ||
+      !destinationAddress
     ) {
       showNotice("error", "Please complete all required fields.");
       return;
     }
 
-    if (!/^[0-9+\-\s()]{7,20}$/.test(form.mobile.trim())) {
-      showNotice("error", "Please enter a valid mobile number.");
+    // Matches your Spring Boot controller's 10-digit validation.
+    if (!/^[0-9]{10}$/.test(mobileNumber)) {
+      showNotice(
+        "error",
+        "Enter a valid 10-digit mobile number."
+      );
       return;
     }
 
-    const distance = Number(calculateDistance(pickup, destination));
+    if (
+      !/^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$/.test(email)
+    ) {
+      showNotice("error", "Enter a valid email address.");
+      return;
+    }
+
+    const distance = Number(
+      calculateDistance(pickup, destination)
+    );
 
     if (distance <= 0) {
       showNotice(
@@ -378,22 +432,18 @@ function VolunteerVehicleBooking() {
       return;
     }
 
-    /*
-     * These payload fields must match your Spring Boot entity.
-     * If your backend uses mobile/pickupLocation/destination/distance,
-     * rename the corresponding fields here.
-     */
+    // Exact field names expected by your Spring Boot controller.
     const payload = {
-      citizenName: form.citizenName.trim(),
-      mobileNumber: form.mobile.trim(),
+      citizenName,
+      mobileNumber,
       email,
       vehicleType: "Volunteer Van",
-      fromAddress: form.pickupLocation.trim(),
-      destinationAddress: form.destination.trim(),
-      pickupLatitude: pickup[0],
-      pickupLongitude: pickup[1],
-      destinationLatitude: destination[0],
-      destinationLongitude: destination[1],
+      fromAddress,
+      destinationAddress,
+      fromLatitude: Number(pickup[0]),
+      fromLongitude: Number(pickup[1]),
+      destinationLatitude: Number(destination[0]),
+      destinationLongitude: Number(destination[1]),
       distanceKm: distance,
     };
 
@@ -407,8 +457,8 @@ function VolunteerVehicleBooking() {
         : `${API_BASE}/volunteer-vehicle-bookings`;
 
       const token =
-        localStorage.getItem("token") ||
-        localStorage.getItem("citizenToken");
+        localStorage.getItem("citizenToken") ||
+        localStorage.getItem("token");
 
       const response = await fetch(url, {
         method: isEditing ? "PUT" : "POST",
@@ -422,12 +472,7 @@ function VolunteerVehicleBooking() {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-
-        throw new Error(
-          errorText ||
-            `Booking ${isEditing ? "update" : "creation"} failed.`
-        );
+        throw new Error(await getApiError(response));
       }
 
       setModalOpen(false);
@@ -457,43 +502,43 @@ function VolunteerVehicleBooking() {
   };
 
   const handleDelete = async (booking) => {
-    if (
-      !window.confirm(
-        `Are you sure you want to delete booking #${booking.id}?`
-      )
-    ) {
-      return;
-    }
+    const confirmed = window.confirm(
+      `Are you sure you want to delete booking #${booking.id}?`
+    );
+
+    if (!confirmed) return;
 
     setDeletingId(booking.id);
 
     try {
       const token =
-        localStorage.getItem("token") ||
-        localStorage.getItem("citizenToken");
+        localStorage.getItem("citizenToken") ||
+        localStorage.getItem("token");
 
       const response = await fetch(
         `${API_BASE}/volunteer-vehicle-bookings/${booking.id}`,
         {
           method: "DELETE",
-          headers: token
-            ? { Authorization: `Bearer ${token}` }
-            : {},
+          headers: {
+            ...(token
+              ? { Authorization: `Bearer ${token}` }
+              : {}),
+          },
         }
       );
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(
-          errorText || "Could not delete this booking."
-        );
+        throw new Error(await getApiError(response));
       }
 
       setBookings((previous) =>
         previous.filter((item) => item.id !== booking.id)
       );
 
-      showNotice("success", "Booking deleted successfully.");
+      showNotice(
+        "success",
+        "Booking deleted successfully."
+      );
     } catch (error) {
       showNotice(
         "error",
@@ -520,7 +565,10 @@ function VolunteerVehicleBooking() {
     const point = getCoordinates(booking, "pickup");
 
     if (!point) {
-      showNotice("error", "Pickup coordinates are unavailable.");
+      showNotice(
+        "error",
+        "Pickup coordinates are unavailable."
+      );
       return;
     }
 
@@ -638,7 +686,7 @@ function VolunteerVehicleBooking() {
                     </div>
 
                     <span className="vvb-status">
-                      {booking.status || "Requested"}
+                      {booking.status || "PENDING"}
                     </span>
                   </div>
 
@@ -738,7 +786,10 @@ function VolunteerVehicleBooking() {
         <div
           className="vvb-modal-overlay"
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
+            if (
+              event.target === event.currentTarget &&
+              !saving
+            ) {
               closeModal();
             }
           }}
@@ -800,8 +851,10 @@ function VolunteerVehicleBooking() {
                     name="mobile"
                     value={form.mobile}
                     onChange={handleChange}
-                    placeholder="Enter mobile number"
+                    placeholder="Enter 10-digit mobile number"
                     type="tel"
+                    inputMode="numeric"
+                    maxLength={10}
                     required
                   />
                 </label>
@@ -812,6 +865,7 @@ function VolunteerVehicleBooking() {
                   </span>
 
                   <input
+                    name="email"
                     value={email}
                     readOnly
                     type="email"
@@ -823,7 +877,11 @@ function VolunteerVehicleBooking() {
                 <div>
                   <h3>Select locations</h3>
                   <p>
-                    Choose a location mode, then click on the map.
+                    {mapSelection === "pickup"
+                      ? "Click on the map to select your pickup location."
+                      : !destination
+                        ? "Pickup selected. Now click on the map to select your destination."
+                        : "Both locations selected. You can change either location."}
                   </p>
                 </div>
 
@@ -878,7 +936,10 @@ function VolunteerVehicleBooking() {
                   <MapClickHandler onMapClick={handleMapClick} />
 
                   {pickup && (
-                    <Marker position={pickup} icon={markerIcon}>
+                    <Marker
+                      position={pickup}
+                      icon={markerIcon}
+                    >
                       <Popup>Pickup location</Popup>
                     </Marker>
                   )}
@@ -927,7 +988,9 @@ function VolunteerVehicleBooking() {
                 <span>Estimated straight-line distance</span>
 
                 <strong>
-                  {form.distance ? `${form.distance} km` : "--"}
+                  {form.distance
+                    ? `${form.distance} km`
+                    : "--"}
                 </strong>
               </div>
 
