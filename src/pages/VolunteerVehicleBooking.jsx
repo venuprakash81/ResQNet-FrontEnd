@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -34,10 +33,12 @@ const API_BASE = "https://resqnet-backend-1.onrender.com/api";
 const defaultCenter = [17.385, 78.4867];
 
 const markerIcon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  iconUrl:
+    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   iconRetinaUrl:
     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  shadowUrl:
+    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
@@ -47,16 +48,63 @@ const markerIcon = new L.Icon({
 const initialForm = {
   citizenName: "",
   mobile: "",
-  email: "",
   pickupLocation: "",
   destination: "",
-  vehicleType: "Volunteer Van",
-  pickupLatitude: null,
-  pickupLongitude: null,
-  destinationLatitude: null,
-  destinationLongitude: null,
   distance: "",
 };
+
+function getCitizenDetails() {
+  const stores = [localStorage, sessionStorage];
+
+  let citizen = {};
+
+  for (const store of stores) {
+    try {
+      const savedCitizen = store.getItem("citizen");
+
+      if (savedCitizen) {
+        const parsed = JSON.parse(savedCitizen);
+
+        if (parsed && typeof parsed === "object") {
+          citizen = { ...citizen, ...parsed };
+        }
+      }
+    } catch (error) {
+      console.error("Could not read saved citizen details:", error);
+    }
+  }
+
+  const readValue = (keys) => {
+    for (const store of stores) {
+      for (const key of keys) {
+        const value = store.getItem(key);
+
+        if (value && value.trim()) {
+          return value.trim();
+        }
+      }
+    }
+
+    return "";
+  };
+
+  return {
+    ...citizen,
+    email:
+      citizen.email ||
+      citizen.citizenEmail ||
+      readValue(["citizenEmail", "email", "userEmail"]),
+    name:
+      citizen.citizenName ||
+      citizen.name ||
+      readValue(["citizenName", "userName", "name"]),
+    mobile:
+      citizen.mobileNumber ||
+      citizen.mobile ||
+      citizen.phone ||
+      readValue(["mobileNumber", "mobile", "phone"]),
+  };
+}
 
 function MapClickHandler({ onMapClick }) {
   useMapEvents({
@@ -90,23 +138,43 @@ function calculateDistance(point1, point2) {
   return (earthRadius * c).toFixed(2);
 }
 
-function getCitizenEmail() {
-  // Update this if your login system uses a different storage key.
-  return (
-    localStorage.getItem("citizenEmail") ||
-    localStorage.getItem("email") ||
-    localStorage.getItem("userEmail") ||
-    ""
-  );
+function getCoordinates(booking, type) {
+  const isPickup = type === "pickup";
+
+  const latitude = isPickup
+    ? booking.pickupLatitude
+    : booking.destinationLatitude;
+
+  const longitude = isPickup
+    ? booking.pickupLongitude
+    : booking.destinationLongitude;
+
+  if (latitude == null || longitude == null) {
+    return null;
+  }
+
+  const lat = Number(latitude);
+  const lng = Number(longitude);
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+    return null;
+  }
+
+  return [lat, lng];
 }
 
 function VolunteerVehicleBooking() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingBooking, setEditingBooking] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
-  const [notice, setNotice] = useState({ type: "", message: "" });
+
+  const [notice, setNotice] = useState({
+    type: "",
+    message: "",
+  });
 
   const [form, setForm] = useState(initialForm);
   const [pickup, setPickup] = useState(null);
@@ -114,92 +182,108 @@ function VolunteerVehicleBooking() {
   const [mapCenter, setMapCenter] = useState(defaultCenter);
   const [mapSelection, setMapSelection] = useState("pickup");
 
-  const email = getCitizenEmail();
+  const citizen = getCitizenDetails();
+  const email = citizen.email;
 
-  useEffect(() => {
+  const showNotice = useCallback((type, message) => {
+    setNotice({ type, message });
+  }, []);
+
+  const fetchBookings = useCallback(async () => {
     if (!email) {
+      setBookings([]);
       setLoading(false);
       setNotice({
         type: "error",
-        message: "Citizen email not found. Please sign in again.",
+        message:
+          "Citizen email not found. Please sign in again.",
       });
       return;
     }
 
-    fetchBookings();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
-
-  const fetchBookings = async () => {
     setLoading(true);
 
     try {
       const response = await fetch(
-        `${API_BASE}/volunteer-vehicle-bookings/email/${encodeURIComponent(
-          email
-        )}`
+        `${API_BASE}/volunteer-vehicle-bookings/email/${encodeURIComponent(email)}`
       );
 
       if (!response.ok) {
-        throw new Error("Could not load your bookings.");
+        throw new Error(
+          `Could not load bookings. Server returned ${response.status}.`
+        );
       }
 
       const data = await response.json();
+
       setBookings(Array.isArray(data) ? data : []);
     } catch (error) {
-      setNotice({ type: "error", message: error.message });
+      showNotice("error", error.message || "Could not load bookings.");
     } finally {
       setLoading(false);
     }
-  };
+  }, [email, showNotice]);
 
-  const showNotice = (type, message) => {
-    setNotice({ type, message });
-    window.setTimeout(() => {
-      setNotice({ type: "", message: "" });
-    }, 4500);
-  };
+  useEffect(() => {
+    fetchBookings();
+  }, [fetchBookings]);
+
+  useEffect(() => {
+    if (!pickup || !destination) {
+      setForm((previous) => ({
+        ...previous,
+        distance: "",
+      }));
+      return;
+    }
+
+    setForm((previous) => ({
+      ...previous,
+      distance: calculateDistance(pickup, destination),
+    }));
+  }, [pickup, destination]);
 
   const openBookingModal = (booking = null) => {
     setNotice({ type: "", message: "" });
     setEditingBooking(booking);
 
     if (booking) {
-      const pickupPoint =
-        booking.pickupLatitude != null &&
-        booking.pickupLongitude != null
-          ? [Number(booking.pickupLatitude), Number(booking.pickupLongitude)]
-          : null;
-
-      const destinationPoint =
-        booking.destinationLatitude != null &&
-        booking.destinationLongitude != null
-          ? [
-              Number(booking.destinationLatitude),
-              Number(booking.destinationLongitude),
-            ]
-          : null;
+      const pickupPoint = getCoordinates(booking, "pickup");
+      const destinationPoint = getCoordinates(booking, "destination");
 
       setPickup(pickupPoint);
       setDestination(destinationPoint);
 
       setForm({
-        citizenName: booking.citizenName || "",
-        mobile: booking.mobile || "",
-        email: booking.email || email,
-        pickupLocation: booking.pickupLocation || "",
-        destination: booking.destination || "",
-        vehicleType: "Volunteer Van",
-        pickupLatitude: pickupPoint?.[0] ?? null,
-        pickupLongitude: pickupPoint?.[1] ?? null,
-        destinationLatitude: destinationPoint?.[0] ?? null,
-        destinationLongitude: destinationPoint?.[1] ?? null,
-        distance: booking.distance ?? "",
+        citizenName:
+          booking.citizenName || citizen.name || "",
+        mobile:
+          booking.mobileNumber ||
+          booking.mobile ||
+          citizen.mobile ||
+          "",
+        pickupLocation:
+          booking.fromAddress ||
+          booking.pickupLocation ||
+          "",
+        destination:
+          booking.destinationAddress ||
+          booking.destination ||
+          "",
+        distance:
+          booking.distanceKm ?? booking.distance ?? "",
       });
 
-      setMapCenter(pickupPoint || destinationPoint || defaultCenter);
+      setMapCenter(
+        pickupPoint || destinationPoint || defaultCenter
+      );
     } else {
-      setForm({ ...initialForm, email });
+      setForm({
+        ...initialForm,
+        citizenName: citizen.name || "",
+        mobile: citizen.mobile || "",
+      });
+
       setPickup(null);
       setDestination(null);
       setMapCenter(defaultCenter);
@@ -210,6 +294,8 @@ function VolunteerVehicleBooking() {
   };
 
   const closeModal = () => {
+    if (saving) return;
+
     setModalOpen(false);
     setEditingBooking(null);
     setForm(initialForm);
@@ -219,41 +305,32 @@ function VolunteerVehicleBooking() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setForm((previous) => ({ ...previous, [name]: value }));
-  };
-
-  const handleMapClick = (point) => {
-    if (mapSelection === "pickup") {
-      setPickup(point);
-      setForm((previous) => ({
-        ...previous,
-        pickupLatitude: point[0],
-        pickupLongitude: point[1],
-        pickupLocation: `Location (${point[0].toFixed(5)}, ${point[1].toFixed(
-          5
-        )})`,
-      }));
-    } else {
-      setDestination(point);
-      setForm((previous) => ({
-        ...previous,
-        destinationLatitude: point[0],
-        destinationLongitude: point[1],
-        destination: `Location (${point[0].toFixed(5)}, ${point[1].toFixed(
-          5
-        )})`,
-      }));
-    }
-  };
-
-  useEffect(() => {
-    const distance = calculateDistance(pickup, destination);
 
     setForm((previous) => ({
       ...previous,
-      distance,
+      [name]: value,
     }));
-  }, [pickup, destination]);
+  };
+
+  const handleMapClick = (point) => {
+    const coordinates = `${point[0].toFixed(5)}, ${point[1].toFixed(5)}`;
+
+    if (mapSelection === "pickup") {
+      setPickup(point);
+
+      setForm((previous) => ({
+        ...previous,
+        pickupLocation: `Location (${coordinates})`,
+      }));
+    } else {
+      setDestination(point);
+
+      setForm((previous) => ({
+        ...previous,
+        destination: `Location (${coordinates})`,
+      }));
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -271,51 +348,89 @@ function VolunteerVehicleBooking() {
       return;
     }
 
-    const payload = {
-      citizenName: form.citizenName.trim(),
-      mobile: form.mobile.trim(),
-      email: email,
-      pickupLocation: form.pickupLocation,
-      destination: form.destination,
-      vehicleType: "Volunteer Van",
-      pickupLatitude: pickup[0],
-      pickupLongitude: pickup[1],
-      destinationLatitude: destination[0],
-      destinationLongitude: destination[1],
-      distance: Number(calculateDistance(pickup, destination)),
-    };
-
     if (
-      !payload.citizenName ||
-      !payload.mobile ||
-      !payload.pickupLocation ||
-      !payload.destination
+      !form.citizenName.trim() ||
+      !form.mobile.trim() ||
+      !form.pickupLocation.trim() ||
+      !form.destination.trim()
     ) {
       showNotice("error", "Please complete all required fields.");
       return;
     }
 
+    if (!/^[0-9+\-\s()]{7,20}$/.test(form.mobile.trim())) {
+      showNotice("error", "Please enter a valid mobile number.");
+      return;
+    }
+
+    const distance = Number(calculateDistance(pickup, destination));
+
+    if (distance <= 0) {
+      showNotice(
+        "error",
+        "Pickup and destination must be different locations."
+      );
+      return;
+    }
+
+    // These names match the backend fields described for ResQNet.
+    const payload = {
+      citizenName: form.citizenName.trim(),
+      mobileNumber: form.mobile.trim(),
+      email,
+      vehicleType: "Volunteer Van",
+      fromAddress: form.pickupLocation.trim(),
+      destinationAddress: form.destination.trim(),
+      pickupLatitude: pickup[0],
+      pickupLongitude: pickup[1],
+      destinationLatitude: destination[0],
+      destinationLongitude: destination[1],
+      distanceKm: distance,
+    };
+
+    setSaving(true);
+
     try {
       const isEditing = Boolean(editingBooking);
+
       const url = isEditing
         ? `${API_BASE}/volunteer-vehicle-bookings/${editingBooking.id}`
         : `${API_BASE}/volunteer-vehicle-bookings`;
 
       const response = await fetch(url, {
         method: isEditing ? "PUT" : "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(localStorage.getItem("token") ||
+          localStorage.getItem("citizenToken")
+            ? {
+                Authorization: `Bearer ${
+                  localStorage.getItem("token") ||
+                  localStorage.getItem("citizenToken")
+                }`,
+              }
+            : {}),
+        },
         body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
         const errorText = await response.text();
+
         throw new Error(
-          errorText || (isEditing ? "Update failed." : "Booking failed.")
+          errorText ||
+            `Booking ${isEditing ? "update" : "creation"} failed (${response.status}).`
         );
       }
 
-      closeModal();
+      setModalOpen(false);
+      setEditingBooking(null);
+      setForm(initialForm);
+      setPickup(null);
+      setDestination(null);
+
       await fetchBookings();
+
       showNotice(
         "success",
         isEditing
@@ -323,36 +438,59 @@ function VolunteerVehicleBooking() {
           : "Volunteer van booked successfully."
       );
     } catch (error) {
-      showNotice("error", error.message || "Something went wrong.");
+      showNotice(
+        "error",
+        error.message || "Something went wrong."
+      );
+    } finally {
+      setSaving(false);
     }
   };
 
   const handleDelete = async (booking) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this booking?"
-    );
-
-    if (!confirmed) return;
+    if (
+      !window.confirm(
+        `Are you sure you want to delete booking #${booking.id}?`
+      )
+    ) {
+      return;
+    }
 
     setDeletingId(booking.id);
 
     try {
+      const token =
+        localStorage.getItem("token") ||
+        localStorage.getItem("citizenToken");
+
       const response = await fetch(
         `${API_BASE}/volunteer-vehicle-bookings/${booking.id}`,
-        { method: "DELETE" }
+        {
+          method: "DELETE",
+          headers: token
+            ? { Authorization: `Bearer ${token}` }
+            : {},
+        }
       );
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(errorText || "Could not delete this booking.");
+
+        throw new Error(
+          errorText || "Could not delete this booking."
+        );
       }
 
       setBookings((previous) =>
         previous.filter((item) => item.id !== booking.id)
       );
+
       showNotice("success", "Booking deleted successfully.");
     } catch (error) {
-      showNotice("r", error.message);
+      showNotice(
+        "error",
+        error.message || "Could not delete booking."
+      );
     } finally {
       setDeletingId(null);
     }
@@ -362,9 +500,27 @@ function VolunteerVehicleBooking() {
     if (!value) return "Not available";
 
     const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return String(value);
+
+    if (Number.isNaN(date.getTime())) {
+      return String(value);
+    }
 
     return date.toLocaleString();
+  };
+
+  const openMap = (booking) => {
+    const point = getCoordinates(booking, "pickup");
+
+    if (!point) {
+      showNotice("error", "Pickup coordinates are unavailable.");
+      return;
+    }
+
+    window.open(
+      `https://www.google.com/maps?q=${point[0]},${point[1]}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (
@@ -375,9 +531,12 @@ function VolunteerVehicleBooking() {
             <div className="vvb-heading-icon">
               <Truck size={25} />
             </div>
+
             <div>
               <h1>Volunteer Van Booking</h1>
-              <p>Book and manage your emergency transport requests.</p>
+              <p>
+                Book and manage your emergency transport requests.
+              </p>
             </div>
           </div>
 
@@ -398,11 +557,15 @@ function VolunteerVehicleBooking() {
             ) : (
               <AlertCircle size={18} />
             )}
+
             <span>{notice.message}</span>
+
             <button
               type="button"
               className="vvb-notice-close"
-              onClick={() => setNotice({ type: "", message: "" })}
+              onClick={() =>
+                setNotice({ type: "", message: "" })
+              }
               aria-label="Close notification"
             >
               <X size={16} />
@@ -416,7 +579,10 @@ function VolunteerVehicleBooking() {
               <h2>My Bookings</h2>
               <p>Your volunteer van booking history</p>
             </div>
-            <span className="vvb-count">{bookings.length} bookings</span>
+
+            <span className="vvb-count">
+              {bookings.length} bookings
+            </span>
           </div>
 
           {loading ? (
@@ -429,8 +595,12 @@ function VolunteerVehicleBooking() {
               <div className="vvb-empty-icon">
                 <Truck size={30} />
               </div>
+
               <h3>No bookings yet</h3>
-              <p>Your volunteer van bookings will appear here.</p>
+              <p>
+                Your volunteer van bookings will appear here.
+              </p>
+
               <button
                 type="button"
                 className="vvb-primary-button"
@@ -443,12 +613,16 @@ function VolunteerVehicleBooking() {
           ) : (
             <div className="vvb-booking-list">
               {bookings.map((booking) => (
-                <article className="vvb-booking-card" key={booking.id}>
+                <article
+                  className="vvb-booking-card"
+                  key={booking.id}
+                >
                   <div className="vvb-card-top">
                     <div className="vvb-vehicle">
                       <div className="vvb-vehicle-icon">
                         <Truck size={20} />
                       </div>
+
                       <div>
                         <h3>Volunteer Van</h3>
                         <span>Booking #{booking.id}</span>
@@ -456,24 +630,34 @@ function VolunteerVehicleBooking() {
                     </div>
 
                     <span className="vvb-status">
-                      {booking.status || "Requested"}
+                      {booking.status || "PENDING"}
                     </span>
                   </div>
 
                   <div className="vvb-route">
                     <div className="vvb-route-line">
                       <span className="vvb-route-dot pickup-dot" />
+
                       <div className="vvb-route-text">
                         <small>Pickup location</small>
-                        <p>{booking.pickupLocation || "Not provided"}</p>
+                        <p>
+                          {booking.fromAddress ||
+                            booking.pickupLocation ||
+                            "Not provided"}
+                        </p>
                       </div>
                     </div>
 
                     <div className="vvb-route-line">
                       <span className="vvb-route-dot destination-dot" />
+
                       <div className="vvb-route-text">
                         <small>Destination</small>
-                        <p>{booking.destination || "Not provided"}</p>
+                        <p>
+                          {booking.destinationAddress ||
+                            booking.destination ||
+                            "Not provided"}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -481,18 +665,21 @@ function VolunteerVehicleBooking() {
                   <div className="vvb-card-details">
                     <span>
                       <Route size={15} />
-                      {booking.distance != null
-                        ? `${booking.distance} km`
+                      {(booking.distanceKm ?? booking.distance) != null
+                        ? `${booking.distanceKm ?? booking.distance} km`
                         : "Distance unavailable"}
                     </span>
+
                     <span>
                       <User size={15} />
                       {booking.citizenName || "Citizen"}
                     </span>
+
                     <span>
                       <Clock size={15} />
                       {formatDate(
-                        booking.createdAt ||
+                        booking.bookingTime ||
+                          booking.createdAt ||
                           booking.bookingDate ||
                           booking.date
                       )}
@@ -516,28 +703,21 @@ function VolunteerVehicleBooking() {
                       onClick={() => handleDelete(booking)}
                     >
                       <Trash2 size={15} />
-                      {deletingId === booking.id ? "Deleting..." : "Delete"}
+                      {deletingId === booking.id
+                        ? "Deleting..."
+                        : "Delete"}
                     </button>
 
-                    {booking.pickupLatitude != null &&
-                      booking.pickupLongitude != null && (
-                        <button
-                          type="button"
-                          className="vvb-map-button"
-                          onClick={() => {
-                            const lat = booking.pickupLatitude;
-                            const lng = booking.pickupLongitude;
-                            window.open(
-                              `https://www.google.com/maps?q=${lat},${lng}`,
-                              "_blank",
-                              "noopener,noreferrer"
-                            );
-                          }}
-                        >
-                          <MapPin size={15} />
-                          Map
-                        </button>
-                      )}
+                    {getCoordinates(booking, "pickup") && (
+                      <button
+                        type="button"
+                        className="vvb-map-button"
+                        onClick={() => openMap(booking)}
+                      >
+                        <MapPin size={15} />
+                        Map
+                      </button>
+                    )}
                   </div>
                 </article>
               ))}
@@ -550,7 +730,9 @@ function VolunteerVehicleBooking() {
         <div
           className="vvb-modal-overlay"
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) closeModal();
+            if (event.target === event.currentTarget) {
+              closeModal();
+            }
           }}
         >
           <div
@@ -562,19 +744,24 @@ function VolunteerVehicleBooking() {
             <div className="vvb-modal-header">
               <div>
                 <h2 id="vvb-modal-title">
-                  {editingBooking ? "Edit Booking" : "Book Volunteer Van"}
+                  {editingBooking
+                    ? "Edit Booking"
+                    : "Book Volunteer Van"}
                 </h2>
+
                 <p>
                   {editingBooking
                     ? "Update your transport details."
                     : "Enter your details and select locations."}
                 </p>
               </div>
+
               <button
                 type="button"
                 className="vvb-modal-close"
                 onClick={closeModal}
                 aria-label="Close booking form"
+                disabled={saving}
               >
                 <X size={21} />
               </button>
@@ -586,6 +773,7 @@ function VolunteerVehicleBooking() {
                   <span>
                     <User size={15} /> Citizen name
                   </span>
+
                   <input
                     name="citizenName"
                     value={form.citizenName}
@@ -599,6 +787,7 @@ function VolunteerVehicleBooking() {
                   <span>
                     <Phone size={15} /> Mobile number
                   </span>
+
                   <input
                     name="mobile"
                     value={form.mobile}
@@ -613,8 +802,8 @@ function VolunteerVehicleBooking() {
                   <span>
                     <Mail size={15} /> Email
                   </span>
+
                   <input
-                    name="email"
                     value={email}
                     readOnly
                     type="email"
@@ -625,8 +814,11 @@ function VolunteerVehicleBooking() {
               <div className="vvb-map-heading">
                 <div>
                   <h3>Select locations</h3>
-                  <p>Choose a location mode, then click on the map.</p>
+                  <p>
+                    Choose a location mode, then click on the map.
+                  </p>
                 </div>
+
                 <span className="vvb-map-hint">
                   <LocateFixed size={15} />
                   Map selection
@@ -646,6 +838,7 @@ function VolunteerVehicleBooking() {
                   <span className="vvb-choice-dot pickup-dot" />
                   Set pickup
                 </button>
+
                 <button
                   type="button"
                   className={
@@ -681,7 +874,10 @@ function VolunteerVehicleBooking() {
                   )}
 
                   {destination && (
-                    <Marker position={destination} icon={markerIcon}>
+                    <Marker
+                      position={destination}
+                      icon={markerIcon}
+                    >
                       <Popup>Destination</Popup>
                     </Marker>
                   )}
@@ -691,6 +887,7 @@ function VolunteerVehicleBooking() {
               <div className="vvb-location-summary">
                 <div className="vvb-location-item">
                   <span className="vvb-route-dot pickup-dot" />
+
                   <div>
                     <small>Pickup</small>
                     <p>
@@ -703,6 +900,7 @@ function VolunteerVehicleBooking() {
 
                 <div className="vvb-location-item">
                   <span className="vvb-route-dot destination-dot" />
+
                   <div>
                     <small>Destination</small>
                     <p>
@@ -717,6 +915,7 @@ function VolunteerVehicleBooking() {
               <div className="vvb-distance">
                 <Navigation size={17} />
                 <span>Estimated straight-line distance</span>
+
                 <strong>
                   {form.distance ? `${form.distance} km` : "--"}
                 </strong>
@@ -727,11 +926,21 @@ function VolunteerVehicleBooking() {
                   type="button"
                   className="vvb-cancel-button"
                   onClick={closeModal}
+                  disabled={saving}
                 >
                   Cancel
                 </button>
-                <button type="submit" className="vvb-primary-button">
-                  {editingBooking ? "Save Changes" : "Submit Booking"}
+
+                <button
+                  type="submit"
+                  className="vvb-primary-button"
+                  disabled={saving}
+                >
+                  {saving
+                    ? "Saving..."
+                    : editingBooking
+                      ? "Save Changes"
+                      : "Submit Booking"}
                 </button>
               </div>
             </form>
